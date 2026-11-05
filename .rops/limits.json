@@ -1,0 +1,7 @@
+{
+  "schema": "rops.limits/1",
+  "budget_usd": 80,
+  "max_calls": 20000,
+  "truncation_max_rate": 0.02,
+  "unknown_cost_per_call_usd": 0.01
+}

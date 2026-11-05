@@ -1,0 +1,3 @@
+95 confidence level in "95% CI"
+99 confidence level in "99% CI"
+100 percent scale

@@ -1,0 +1,10 @@
+{
+  "team": "discreet",
+  "location": "Lagos, Nigeria",
+  "members": [
+    {
+      "name": "<<FILL: team member name>>",
+      "affiliation": "<<FILL: affiliation>>"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "rops.experiment/1",
+  "entry": [
+    "python3",
+    "harness/run_one.py"
+  ],
+  "provider": "fake",
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "positive_control": {
+    "condition": "C1",
+    "metric": "metric",
+    "threshold": 0.5,
+    "direction": ">="
+  },
+  "conditions": [
+    {
+      "id": "C1",
+      "phase": "pilot",
+      "max_tokens": 64
+    },
+    {
+      "id": "C2",
+      "phase": "main",
+      "max_tokens": 64
+    }
+  ],
+  "judge": null
+}

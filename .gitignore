@@ -1,0 +1,5 @@
+.rops/cache/
+*.bak
+.rops/guard.json
+.rops/guard-accepted.json
+.rops/guard-restored/

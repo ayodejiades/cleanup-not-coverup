@@ -1,0 +1,181 @@
+{
+  "schema": "rops.sprint/1",
+  "title": "Swarm Alignment Hackathon",
+  "url": "https://apartresearch.com/sprints/swarm-alignment-2026",
+  "start_date": "2026-11-06",
+  "end_date": "2026-11-08",
+  "deadline": {
+    "aoe": "2026-11-08T23:59:00-12:00",
+    "utc": "2026-11-09T11:59:00+00:00",
+    "local": "2026-11-09T12:59:00+01:00",
+    "tz": "Africa/Lagos"
+  },
+  "tracks": [
+    {
+      "id": "1",
+      "name": "Sandboxes and Testbeds",
+      "questions": [
+        {
+          "id": "1.1",
+          "text": "What does a multi-agent sandbox need so that agents cannot leave it, and how would you test that it holds?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "1.2",
+          "text": "Can you build a small, reproducible environment where 5–20 LLM agents acting for different principals share a resource, a market or a tool over many rounds, and log everything so another team can rerun it?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "1.3",
+          "text": "How far can a small, cheap model stand in for a frontier agent in the same environment? At which point do the results stop matching?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "1.4",
+          "text": "What would make a result from your sandbox transfer to real deployments, and what test would show you that it does not?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "The Science of Agent Networks",
+      "questions": [
+        {
+          "id": "2.1",
+          "text": "Under what conditions do leaders, roles and division of labour emerge in an agent population, and can you reproduce it in a safe sandbox?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "2.2",
+          "text": "Do agents that each refuse a harmful task complete it once the task is split across them?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "2.3",
+          "text": "If one agent in a network is compromised, how fast and how far does the bad behaviour spread? Does the shape of the network matter?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "2.4",
+          "text": "As you add agents, mix different models or change who can talk to whom, do cooperation and failure rates change smoothly, or is there a sudden jump?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Strengthening Agent Infrastructure",
+      "questions": [
+        {
+          "id": "3.1",
+          "text": "How should an agent ID work when agents can rename, copy or fine-tune themselves, and how would you revoke one?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "3.2",
+          "text": "What can one malicious agent do inside an existing agent-to-agent protocol such as A2A? Can you demonstrate an attack and propose a fix?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "3.3",
+          "text": "Can you build a reputation score for agents that a group of colluding agents cannot easily game? Show it by attacking it.",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "3.4",
+          "text": "Can two agents make a credible commitment without a trusted third party, for example by handing the deal to a sub-agent whose code the other side can check?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Multi-Agent Oversight and Control",
+      "questions": [
+        {
+          "id": "4.1",
+          "text": "Using the Swarm Traces payloads or the AI Village transcripts, can you build a tool that finds coordination, information spread or covert channels in real multi-agent logs?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "4.2",
+          "text": "Can you design oversight that still works when agents can edit or delete the logs it relies on?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "4.3",
+          "text": "Can a monitor that sees only part of the messages between agents detect collusion or hidden (steganographic) communication?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        },
+        {
+          "id": "4.4",
+          "text": "Do AI control protocols, such as a trusted model monitoring an untrusted one, still hold when the untrusted side is several agents that can coordinate?",
+          "detail": "",
+          "untested": false,
+          "budget": null
+        }
+      ]
+    }
+  ],
+  "rubric": [
+    "Impact Potential & Innovation",
+    "Execution Quality",
+    "Presentation & Clarity"
+  ],
+  "abstract_max_words": 250,
+  "pages": {
+    "min": 4,
+    "max": 8
+  },
+  "required_sections": [
+    "Limitations and Dual-Use / Ethical Considerations"
+  ],
+  "requires_positive_control": false,
+  "ai_policy": "Use AI tools however they help you: to check your reasoning, find gaps in a draft, write and debug code, or help with the writing. Your team is responsible for everything in the report, and made-up results or references can disqualify a project. Judges score each report on the rubric, and a judge can decline to score one too unclear to follow.",
+  "starter_repos": [
+    "https://github.com/google-deepmind/concordia",
+    "https://github.com/Ajay150313/agentsre"
+  ],
+  "template_url": "https://docs.google.com/document/d/1_1_27EyZriMlc8n8EBE2YScaeyMjm-8xjR097nmHXAE/copy?usp=sharing",
+  "prizes": [
+    2000,
+    1000,
+    600,
+    200,
+    200
+  ],
+  "unknown": [
+    "requires_positive_control"
+  ]
+}
