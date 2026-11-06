@@ -164,8 +164,7 @@
   "requires_positive_control": false,
   "ai_policy": "Use AI tools however they help you: to check your reasoning, find gaps in a draft, write and debug code, or help with the writing. Your team is responsible for everything in the report, and made-up results or references can disqualify a project. Judges score each report on the rubric, and a judge can decline to score one too unclear to follow.",
   "starter_repos": [
-    "https://github.com/google-deepmind/concordia",
-    "https://github.com/Ajay150313/agentsre"
+    "https://github.com/google-deepmind/concordia"
   ],
   "template_url": "https://docs.google.com/document/d/1_1_27EyZriMlc8n8EBE2YScaeyMjm-8xjR097nmHXAE/copy?usp=sharing",
   "prizes": [
