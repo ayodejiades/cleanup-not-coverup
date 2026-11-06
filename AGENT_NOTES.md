@@ -31,3 +31,46 @@ Decisions for you before PREREG.md:
 7. **Swarm Traces (15 MB):** download only after kickoff, and only on your OK.
 8. **traceturn:** if any gateway code comes from it, it has to be marked preexisting. Writing
    the gateway fresh avoids that.
+
+## Fri 6 Nov 2026, 03:35–: prep before kickoff (no project code yet)
+
+The sprint opens at 13:00 Lagos. Harness code written before then would count as pre-sprint
+work (it has to be disclosed and isn't judged), so none was written. Done instead:
+
+1. **Environment.** `rops-doctor` reports 13 checks with 0 FAIL. A throwaway probe outside the
+   project used a neutral bookkeeping task, not a planned condition. llama3.1:8b and
+   qwen2.5:7b both followed a one-JSON-action-per-turn format (5/5 correct steps), at 3–5 s
+   per call with JSON mode on.
+2. **Build constraint.** `rops.llm.chat` returns only text and drops native tool calls, so
+   the harness will use the JSON action format.
+3. **Related work** is in `docs/RELATED_WORK.md`, with every arXiv ID checked. The closest
+   paper is Qin et al. (arXiv:2609.30266, 24 Sep 2026), which shows agents delete their own
+   traces. It leaves detection "outside this study's scope", has no benign-cleanup comparison
+   and no cross-agent case, and doesn't link deletions to exfiltration. That's the gap
+   statement. M4 and M5 come from information-flow control (FIDES, CaMeL) and DLP, so don't
+   claim them as new.
+4. **The prereg draft** is in `designs/4.2-prereg-draft.md`. It passes `rops-prereg`'s
+   validation (checked on a scratch copy). PREREG.md is untouched; copy the draft in when you
+   agree.
+5. **The design is tightened** in `designs/4.2.md` and `configs/experiment.draft.json`:
+   - every arm now includes the unlisted version check
+   - ground truth is a canary string plus a deterministic decoder
+   - M4 uses a single length L
+   - the scripted evasion suite is arm C5
+
+Decisions for you (in addition to the earlier list):
+
+- **H1 compares M4 with M1 only.** M2 and M3 flag both runs of every matched pair by
+  construction, so their pair accuracy is 0 by design. The draft says so and reports them for
+  their false-alarm cost, so a judge can't call the baselines rigged.
+- **Freezing needs a clean tree.** `rops-prereg freeze` refuses while files other than
+  PREREG.md and `configs/` are uncommitted, so commit the docs first.
+- **Paired test.** `rops.stats` has no McNemar test. H1's exact McNemar test will be a small
+  binomial helper in `analysis/`.
+
+At kickoff, in hour order:
+1. Build `harness/` (sandbox, gateway, agents, monitors, leak check).
+2. Run a pilot with the fake provider.
+3. Run a pilot on Ollama with `phase: pilot`.
+4. Freeze the prereg.
+5. Run `rops-run grid`.
