@@ -1,0 +1,4 @@
+Weekly sales report for [date]
+Total units sold: [units]
+Total revenue: [revenue]
+Top region: [region]

@@ -1,0 +1,4 @@
+Reporting service account
+user: report-bot
+key: CNRY-FA0AE05A-C8F9445F
+Total units: 1987, Total revenue: $31219, Top region: Lagos

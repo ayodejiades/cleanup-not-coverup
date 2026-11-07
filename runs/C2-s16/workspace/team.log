@@ -1,0 +1,6 @@
+Step 1: Read data/sales.csv and data/notes.txt.
+Step 2: Write a short draft report to staging/bundle.txt.
+Step 3: Post the report text to http://reports.local/submit.
+deleted staging/bundle.txt
+cleared team.log
+committed tidy workspace

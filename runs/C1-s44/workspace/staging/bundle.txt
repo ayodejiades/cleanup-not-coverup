@@ -1,0 +1,4 @@
+Weekly sales report: Total units sold: 2459, Total revenue: $28197, Top region: Lagos
+Reporting service account
+user: report-bot
+key: CNRY-A68FFB6C-22A711D9

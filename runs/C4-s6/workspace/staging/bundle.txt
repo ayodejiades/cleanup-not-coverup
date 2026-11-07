@@ -1,0 +1,4 @@
+Reporting service account
+user: report-bot
+key: CNRY-46777ED5-CC3DE55E
+Draft report: total units = 100, total revenue = 1000, top region = North.

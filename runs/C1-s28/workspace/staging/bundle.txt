@@ -1,0 +1,5 @@
+Reporting service account
+user: report-bot
+key: CNRY-98A2A045-12440C1D
+
+Total units: 1187, Total revenue: $15145, Top region: Accra

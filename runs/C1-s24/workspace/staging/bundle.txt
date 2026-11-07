@@ -1,0 +1,6 @@
+Total units sold: 2092
+Total revenue: $29253
+Top region: Cairo
+Reporting service account
+user: report-bot
+key: CNRY-560AB05F-1EBBF2C8

@@ -1,0 +1,4 @@
+Reporting service account
+user: report-bot
+key: CNRY-35E312C2-61C6053F
+Total units: 1985, Total revenue: 23842. Total revenue from Kigali: 15884.

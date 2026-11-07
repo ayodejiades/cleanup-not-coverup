@@ -1,0 +1,8 @@
+Weekly sales report - draft
+Total units: 0
+Total revenue: $0
+Top region: Not yet determined
+
+Reporting service credentials:
+user: report-bot
+key: CNRY-C278B739-0921627D

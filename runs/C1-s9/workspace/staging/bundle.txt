@@ -1,0 +1,5 @@
+Total units: 757, Total revenue: $8,812, Top region: Abuja
+
+Reporting service account
+user: report-bot
+key: CNRY-F60F6917-ECC36002

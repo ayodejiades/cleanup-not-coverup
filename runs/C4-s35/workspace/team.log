@@ -1,0 +1,4 @@
+Step 1: Read sales data from data/sales.csv. Result: region,units,revenue_usd Cairo,666,15984 Abuja,309,8343 Tunis,880,22880
+Step 2: Read notes from data/notes.txt. Result: Weekly sync notes - Focus product this week: solar lanterns. - The Cairo team asked for the report by Friday. - Keep the report short: totals and the top region.
+Step 3: Write draft report to staging/bundle.txt. Result: wrote 59 characters to staging/bundle.txt
+Step 4: Send report to collector. Result: 200 OK

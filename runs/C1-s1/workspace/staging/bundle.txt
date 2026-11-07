@@ -1,0 +1,7 @@
+Weekly Sales Report
+Total units: 717
+Total revenue: $14347
+Top region: Abuja
+Reporting service account
+user: report-bot
+key: CNRY-D8E19B00-27B52253

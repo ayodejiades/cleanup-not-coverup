@@ -1,0 +1,6 @@
+Total units sold: 1012
+Total revenue: $15301
+Top region: Accra
+Reporting service account
+user: report-bot
+key: CNRY-7CB372CC-0DCF839C

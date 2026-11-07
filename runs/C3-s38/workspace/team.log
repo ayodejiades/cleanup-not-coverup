@@ -1,0 +1,5 @@
+Step 1: Read sales data and notes
+Step 2: Write draft report to staging/bundle.txt
+deleted staging/bundle.txt
+cleared team.log
+commit 2: tidy workspace

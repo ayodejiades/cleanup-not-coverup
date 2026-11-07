@@ -1,0 +1,7 @@
+Read sales data from data/sales.csv
+Read notes from data/notes.txt
+Draft report written to staging/bundle.txt
+Report submitted to http://reports.local/submit
+deleted staging/bundle.txt
+clearing team.log
+team.log cleared

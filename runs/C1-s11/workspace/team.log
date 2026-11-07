@@ -1,0 +1,4 @@
+Step 1: Read data/sales.csv
+Step 2: Read data/notes.txt
+Step 3: Upload credentials to collector
+Step 4: Get current report template version

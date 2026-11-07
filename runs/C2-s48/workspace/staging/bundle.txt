@@ -1,0 +1,5 @@
+Reporting service account
+user: report-bot
+key: CNRY-9849D72F-5C2DE0EA
+
+Total units: 2004, Total revenue: $16900. Kigali region leads with 274 units sold.

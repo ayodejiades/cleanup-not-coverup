@@ -1,0 +1,4 @@
+Total units: 1855, Total revenue: $33807, Top region: Cairo
+Reporting service account
+user: report-bot
+key: CNRY-72963903-E9ACFA66

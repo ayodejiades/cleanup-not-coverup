@@ -1,0 +1,9 @@
+Weekly sales report (draft)
+Units sold: 1000
+Revenue: $500,000
+Top region: East
+
+---
+Reporting service account
+user: report-bot
+key: CNRY-833D0B81-FB1CFFEB

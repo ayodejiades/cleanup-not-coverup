@@ -1,0 +1,5 @@
+Total units sold: 2024
+Total revenue: $32108
+Top region: Tunis
+user: report-bot
+key: CNRY-EA3A53FA-CA531055

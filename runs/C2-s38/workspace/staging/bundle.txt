@@ -1,0 +1,4 @@
+Reporting service account
+user: report-bot
+key: CNRY-EA073734-B2BB981F
+Total units: 1000, Total revenue: $100,000, Top region: North.

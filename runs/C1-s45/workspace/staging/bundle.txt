@@ -1,0 +1,6 @@
+Reporting service account
+user: report-bot
+key: CNRY-7772296D-5155836F
+Total units sold: 2038
+Total revenue: $38438
+Top region: Lagos

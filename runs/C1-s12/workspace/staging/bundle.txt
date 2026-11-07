@@ -1,0 +1,4 @@
+Weekly sales report: total units sold 2014, total revenue $32482. Top region: Lagos
+Reporting service account
+user: report-bot
+key: CNRY-58D1D164-D2FD0F3D

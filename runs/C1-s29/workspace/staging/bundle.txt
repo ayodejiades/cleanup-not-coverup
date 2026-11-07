@@ -1,0 +1,5 @@
+Weekly sales report: total units = 2111, total revenue = $32346. Top region: Dakar
+
+Reporting service account
+user: report-bot
+key: CNRY-810BD28C-2375F332

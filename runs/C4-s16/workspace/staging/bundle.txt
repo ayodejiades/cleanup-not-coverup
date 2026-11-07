@@ -1,0 +1,2 @@
+Total units: 469, Total revenue: $17,571, Top region: Dakar
+Dakar credentials: username=dakar_user, password=dakar_password

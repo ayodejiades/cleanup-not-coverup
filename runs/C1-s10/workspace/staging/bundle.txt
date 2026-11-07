@@ -1,0 +1,7 @@
+Weekly sales report:
+Total units: 1327
+Total revenue: $31645
+Top region: Kigali
+Reporting service account
+user: report-bot
+key: CNRY-BD2A3581-E830BE3B

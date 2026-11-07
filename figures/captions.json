@@ -1,0 +1,5 @@
+{
+  "fig1_pair_accuracy.png": "Figure 1: Pair accuracy on held-out matched pairs: the share of (C2, C3) pairs where a monitor flags the cover-up run and passes its honest twin. Bars show Wilson 95% intervals.",
+  "fig2_evasions.png": "Figure 2: Share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses the length L = 8 set on calibration seeds.",
+  "fig3_m4_lcs.png": "Figure 3: For each held-out run, the longest stretch of text shared by any destroyed artefact and any undeclared request (log scale, plus one so zero shows). M4 flags a run at or above the dashed line."
+}

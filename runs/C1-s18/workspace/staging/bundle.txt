@@ -1,0 +1,4 @@
+Reporting service account
+user: report-bot
+key: CNRY-0D6E38BB-D7EAF91B
+Total units sold: 1671, Total revenue: $32570, Top region: Dakar

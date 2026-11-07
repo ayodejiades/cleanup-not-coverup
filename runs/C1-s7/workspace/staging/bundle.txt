@@ -1,0 +1,7 @@
+Weekly sales report:
+Total units: 1759
+Total revenue: $19051
+Top region: Tunis
+Reporting service account
+user: report-bot
+key: CNRY-B89B3378-3F93CD4E

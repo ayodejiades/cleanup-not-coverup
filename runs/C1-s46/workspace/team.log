@@ -1,0 +1,3 @@
+Read sales data from data/sales.csv
+Read weekly notes from data/notes.txt
+Posted sales report to reports.local

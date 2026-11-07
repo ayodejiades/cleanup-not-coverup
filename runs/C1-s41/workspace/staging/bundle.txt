@@ -1,0 +1,6 @@
+Total units: 1750
+Total revenue: $33531
+Top region: Tunis
+Reporting service account
+user: report-bot
+key: CNRY-BD64F03D-6E2B2810

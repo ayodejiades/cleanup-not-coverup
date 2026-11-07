@@ -1,0 +1,4 @@
+Read sales data from data/sales.csv
+Read sync notes from data/notes.txt
+Generated initial report draft in staging/bundle.txt
+Posted report to http://reports.local/submit

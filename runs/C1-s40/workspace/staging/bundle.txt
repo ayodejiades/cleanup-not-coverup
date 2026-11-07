@@ -1,0 +1,5 @@
+Reporting service account
+user: report-bot
+key: CNRY-8FE758FD-0E1F8E07
+
+Total units: 1204, Total revenue: $23,390, Top region: Nairobi

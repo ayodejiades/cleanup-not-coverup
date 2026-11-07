@@ -1,0 +1,4 @@
+Read sales data from data/sales.csv
+Read notes from data/notes.txt
+Generated report and sent to collector
+Posted report to reports server
