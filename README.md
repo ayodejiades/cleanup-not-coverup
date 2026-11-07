@@ -21,8 +21,10 @@ On held-out matched pairs, the effect-linked rule told a cover-up from its hones
 12 pairs and flagged none of 185 honest runs. The LLM reading the agents' own log got 1 of 12
 right, and it flagged honest cleanup (0.84) more often than open leaks (0.17). Scripted base64,
 hex, reversed and split leaks beat the effect-linked rule, and the provenance rule catches them
-at the cost of flagging most honest runs. Given the gateway record instead of the log (an exploratory check), the same LLM got at most 8 of 12
-pairs. The 12 tested pairs come from deviation D1 (see
+at the cost of flagging most honest runs. Two exploratory checks: the agents' log named the leak
+in only 3 of the 12 cover-ups and in none of the honest runs, so no reader of it could get more
+than 3 pairs right; given the gateway record instead, the same LLM got at most 8 of 12 pairs.
+The 12 tested pairs come from deviation D1 (see
 `DEVIATIONS.md`). The preregistered seeds gave 2 eligible pairs. Every number is in
 `results/claims.json`, and the report is `paper/DRAFT.md`.
 
@@ -46,6 +48,9 @@ any sprint; it is not part of the contribution.
 | `harness/monitors.py` | monitors M1 to M5 |
 | `harness/run_one.py` | one run: writes `runs/<COND>-s<SEED>/result.json` |
 | `analysis/monitors.py` | claims: thresholds on calibration seeds, tests on held-out seeds |
+| `harness/m1_gateway.py`, `harness/score_m1g.py` | exploratory M1g: M1's model reading the gateway record |
+| `analysis/evidence.py` | exploratory: does M1's input still name the leak? (no model calls) |
+| `harness/score_strong.py`, `harness/model_probe.py` | re-scoring M1 and M1g with another model; attempted, stopped at a free-tier quota |
 | `analysis/figures.py` | figures from the claims |
 | `configs/experiment.json` | arms, seeds, split, models |
 | `PREREG.md` | the frozen preregistration |

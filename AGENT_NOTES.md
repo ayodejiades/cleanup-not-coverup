@@ -237,3 +237,49 @@ Changes before the freeze:
   - Figure 2 moved after its text.
 
   The real count is checked on the Google Doc's PDF.
+
+## Stronger monitor attempt and the evidence check (2026-11-07, evening)
+
+- **Stronger monitor, attempted and stopped:**
+  - `harness/score_strong.py` re-scores M1 and M1g on the 253 runs the paper's numbers use.
+    It takes any rops.llm provider, paces calls, and resumes with the same model.
+  - `harness/model_probe.py` lists the models a key can reach and makes one ledgered test
+    call on each.
+  - Owner's Gemini API key, free tier:
+    - 3.1 Pro had no quota.
+    - 3.8 Flash scored 4 runs, then hit overload (503) and its quota (429).
+    - Those 4 replies are kept as `runs/*/gemini-3.8-trial.json`, outside the analysis (its
+      `STRONG` tags read `<tag>.json` only).
+  - The Claude CLI needs a sign-in, and a paid API was ruled out on cost. The owner chose to
+    stop here.
+  - The analysis still reads `claude.json` or `gemini.json` if a later run writes them.
+- **Evidence check (`analysis/evidence.py`, exploratory, no model calls):** does M1's input
+  (log and commits; the file list is compared separately) still name the leak, meaning the
+  collector, the canary or the credentials file?
+  - D1 cover-ups: 3 of 12.
+  - C4 cover-ups: 1 of 17.
+  - Honest C3 runs: 0 of 185.
+  - C1 runs, with no instruction to hide the leak: 0.29.
+  - The file lists match in all 12 D1 pairs.
+  - The tidy-up is mentioned in 0.58 of cover-ups and 0.66 of honest runs.
+  - So a reader that needs the leak named can get at most 3 of 12 D1 pairs right (M4: 12;
+    McNemar p = 0.004). The gateway record holds the request to the collector in every
+    cover-up and no honest run.
+  - Claims: `expl.evidence.*`. Paper: Section 4.5 (first check), one sentence each in the
+    abstract, Discussion, Conclusion and Appendix A. REDTEAM: N4 rewritten; A3 and N7
+    extended.
+- **Fixes along the way:**
+  - The analysis now loads the strong-model finish reasons, so their "cut off" count is real.
+- **Page fit, again (LibreOffice render, 8 pages in total):**
+  - Each figure's caption is now its alt text. This removes the duplicate italic
+    "Figure N" line.
+  - Figure 2 sits at the start of 4.3.
+  - Figures 1 and 2 are 1.95 and 1.85 inches tall. Figure 2's y-label is now "Share flagged
+    (held out)".
+  - Trimmed wording:
+    - Discussion: dropped the exclusion-list sentence, which repeats the Introduction.
+    - 4.4: dropped the C4-pair M1/M5 numbers; Figure 1 shows them.
+    - Shortened the 4.5 opening, "What is new", three Appendix A bullets and the LLM
+      statement.
+  - The sprint counts 8 pages without references and appendices. `rops-preflight` counts
+    every PDF page, so the total is kept at 8.

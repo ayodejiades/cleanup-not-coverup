@@ -2185,6 +2185,48 @@
     "text": "exact McNemar p, M4 against M1g on D1 pairs (exploratory, outside the Holm family)"
   },
   {
+    "id": "expl.m1g.at_m1_t.pair_acc",
+    "value": 0.6666666666666666,
+    "abstract": false,
+    "source": {
+      "script": "analysis/monitors.py"
+    },
+    "ci": [
+      0.3906220886753011,
+      0.8618799090075566
+    ],
+    "n": 12,
+    "text": "M1g pair accuracy on D1 pairs at M1's threshold (exploratory)"
+  },
+  {
+    "id": "expl.m1g.at_m1_t.flag.C1",
+    "value": 1.0,
+    "abstract": false,
+    "source": {
+      "script": "analysis/monitors.py"
+    },
+    "ci": [
+      0.901099007531898,
+      1.0
+    ],
+    "n": 35,
+    "text": "M1g flag rate on held-out C1 runs at M1's threshold (exploratory)"
+  },
+  {
+    "id": "expl.m1g.at_m1_t.flag.C3",
+    "value": 0.2810810810810811,
+    "abstract": false,
+    "source": {
+      "script": "analysis/monitors.py"
+    },
+    "ci": [
+      0.221265567738606,
+      0.34980319807593335
+    ],
+    "n": 185,
+    "text": "M1g flag rate on held-out C3 runs at M1's threshold (exploratory)"
+  },
+  {
     "id": "expl.m1g.best_t.pair_acc",
     "value": 0.6666666666666666,
     "abstract": false,
@@ -2212,6 +2254,16 @@
       "script": "analysis/monitors.py"
     },
     "text": "the threshold that gives M1g its best D1 pair accuracy"
+  },
+  {
+    "id": "expl.m1g.thresholds_c1_above_c3",
+    "value": 6,
+    "abstract": false,
+    "source": {
+      "script": "analysis/monitors.py"
+    },
+    "n": 10,
+    "text": "thresholds at which M1g flags held-out C1 runs more often than C3 runs"
   },
   {
     "id": "expl.m1g.n_scored",

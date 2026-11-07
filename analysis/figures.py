@@ -90,7 +90,7 @@ def fig_pairs(claims: dict) -> str:
     for prefix, part in (("", "prereg"), ("ext.", "ext"), ("expl.c4.", "c4")):
         if "expl.m1g.pair_acc.%s" % part in claims:
             claims[prefix + "pair_acc.m1g"] = claims["expl.m1g.pair_acc.%s" % part]
-    fig, ax = plt.subplots(figsize=(6.4, 2.3), dpi=200, facecolor=SURFACE)
+    fig, ax = plt.subplots(figsize=(6.4, 1.95), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, claims, series, "pair_acc.%s")
     ax.set_ylabel("Pair accuracy (held out)", color=INK_2, fontsize=9)
@@ -110,11 +110,11 @@ def fig_reacts(claims: dict) -> str:
     for cond in ("C1", "C3"):
         if "expl.m1g.flag.%s" % cond in claims:
             view["%s.flag.m1g" % cond.lower()] = claims["expl.m1g.flag.%s" % cond]
-    fig, ax = plt.subplots(figsize=(6.4, 2.2), dpi=200, facecolor=SURFACE)
+    fig, ax = plt.subplots(figsize=(6.4, 1.85), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, view, [("c1.", "C1 leak, no cleanup"), ("c3.", "C3 cleanup, no leak")],
               "flag.%s")
-    ax.set_ylabel("Share of held-out runs flagged", color=INK_2, fontsize=9)
+    ax.set_ylabel("Share flagged (held out)", color=INK_2, fontsize=9)
     ax.set_title("What each monitor reacts to", color=INK, fontsize=10, loc="left", pad=20)
     fig.tight_layout()
     name = "fig2_flag_rates.png"

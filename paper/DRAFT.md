@@ -2,7 +2,7 @@
 
 ## Abstract
 
-When AI agents can delete the files and logs a monitor reads, an operator must tell a cover-up from routine cleanup that deletes the same things. In our two-agent sandbox, agent A submits a report and agent B tidies up, while a hash-chained gateway the agents cannot reach records every tool call. In cover-up runs A also sends a fictitious canary to an unlisted address, and each has an honest twin with the same deletions, cleared log and unlisted call, but no leak. With llama3.1:8b agents, the preregistered analysis had only 2 eligible pairs, and a logged deviation added 150 seeds, giving 12. A rule that flags at least 8 characters of deleted text in an unlisted request got 12 of 12 pairs right. A language model (qwen2.5:7b) reading the agents' log got 8% right (exact McNemar test, Holm-adjusted p = 0.003), and it flagged 84% of honest cleanup runs but only 17% of open leaks. Given the gateway record instead, the same model got at most 8 of 12 right. Rules flagging any deletion or any unlisted call flagged 99% and 100% of honest runs. Agents told the rule still sent the canary unencoded. Scripted encoded or split leaks evaded it, and a provenance rule caught those but flagged 83% of honest runs. Operators should record payloads and deleted text at a gateway and audit cleanup against that record.
+When AI agents can delete the files and logs a monitor reads, an operator must tell a cover-up from routine cleanup that deletes the same things. In our two-agent sandbox, agent A submits a report and agent B tidies up, while a hash-chained gateway the agents cannot reach records every tool call. In cover-up runs A also sends a fictitious canary to an unlisted address, and each has an honest twin with the same deletions, cleared log and unlisted call, but no leak. With llama3.1:8b agents, the preregistered analysis had only 2 eligible pairs, and a logged deviation added 150 seeds, giving 12. A rule that flags at least 8 characters of deleted text in an unlisted request got 12 of 12 pairs right. A language model (qwen2.5:7b) reading the agents' log got 8% right (exact McNemar test, Holm-adjusted p = 0.003), and it flagged 84% of honest cleanup runs but only 17% of open leaks. That log named the leak in only 3 of the 12 cover-ups, capping any reader of it; given the gateway record, the same model got at most 8 of 12 right. Rules flagging any deletion or any unlisted call flagged 99% and 100% of honest runs. Agents told the rule still sent the canary unencoded. Scripted encoded or split leaks evaded it, and a provenance rule caught those but flagged 83% of honest runs. Operators should record payloads and deleted text at a gateway and audit cleanup against that record.
 
 ## 1. Introduction
 
@@ -81,33 +81,33 @@ Table 2: Share of runs on the grid seeds (50 runs per arm) in which each part of
 
 Only 2 calibration pairs were eligible, and t = 7 and L = 8 were set on them. Of the 35 held-out pairs, 2 were eligible; 33 were dropped because the C2 run was not a cover-up, and none for the staging-file rule. On those 2 pairs, M4 got both right, M1 one, and M2, M3 and M5 none. By the prereg's own rule this is descriptive. With the 150 extra D1 seeds, 12 of the 185 held-out pairs were eligible (173 dropped because the C2 run was not a cover-up). M4 got all 12 right (pair accuracy 1.00, interval 0.758 to 1.00). M1 and M5 each got one right (0.083, interval 0.015 to 0.354), and M2 and M3 none (Figure 1). M4 was right where M1 was wrong in 11 pairs and wrong where M1 was right in none (exact McNemar p = 0.001, Holm-adjusted 0.003), so H1 is supported. On the 10 pairs with identical destroyed paths, M4 scored 1.00 and M1 0.1.
 
-![Figure 1](figures/fig1_pair_accuracy.png)
-
-Figure 1: Pair accuracy (the share of held-out pairs in which a monitor flags the cover-up and passes its honest twin) on the preregistered seeds, with D1, and on exploratory C4 pairs. Error bars are Wilson 95% intervals. M1g, right of the dashed line, is the exploratory monitor of Section 4.5 at its calibrated threshold.
+![Figure 1: Pair accuracy (the share of held-out pairs in which a monitor flags the cover-up and passes its honest twin) on the preregistered seeds, with D1, and on exploratory C4 pairs. Error bars are Wilson 95% intervals. M1g, right of the dashed line, is the exploratory monitor of Section 4.5 at its calibrated threshold.](figures/fig1_pair_accuracy.png)
 
 ### 4.3 What each monitor reacts to
+
+![Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup (C1, 35 runs) and honest cleanup with no leak (C3, 185 runs). A monitor that tracks the leak flags C1 and passes C3. Error bars are Wilson 95% intervals; M1g as in Figure 1.](figures/fig2_flag_rates.png)
 
 M1 flagged 0.84 of the 185 held-out C3 runs and 0.17 of the 35 held-out C1 runs (Figure 2), the reverse of what a monitor reading for the leak would do. M2 flagged 0.99 of C3 runs and M3 all of them. M5 flagged 0.83, because the agent that writes the staging file also makes the version check. M4 flagged none of the 185 (interval 0 to 0.02), and its gap with M5, the H3b test, holds (Holm-adjusted p = 0.0008).
 
 M4 also flagged 15 held-out C1 runs and 127 held-out C2 runs that the canary label does not count as cover-ups. In each, a file whose earlier text was later destroyed, usually the plain report, had been posted to the collector, so deleted text had left through an unlisted address, which is what M4 checks. Each of the 29 held-out cover-ups shares at least 70 characters with an unlisted request, and none of the 185 honest runs shares any.
 
-![Figure 2](figures/fig2_flag_rates.png)
-
-Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup (C1, 35 runs) and honest cleanup with no leak (C3, 185 runs). A monitor that tracks the leak flags C1 and passes C3. Error bars are Wilson 95% intervals; M1g as in Figure 1.
-
 ### 4.4 Attacks on the rule
 
-Agents told the rule did not evade it. M4 caught all 17 held-out C4 cover-ups (interval 0.816 to 1.00), as it caught all 12 C2 cover-ups, so H2 is not supported (Holm-adjusted p = 1.0). In all 27 C4 cover-ups the canary went out unencoded. M5 also caught all 17, so H3a is not supported either. On the 17 exploratory C4 pairs, M4 scored 1.00, M1 0.176 and M5 0.118 (Figure 1).
+Agents told the rule did not evade it. M4 caught all 17 held-out C4 cover-ups (interval 0.816 to 1.00), as it caught all 12 C2 cover-ups, so H2 is not supported (Holm-adjusted p = 1.0). In all 27 C4 cover-ups the canary went out unencoded. M5 also caught all 17, so H3a is not supported either. On the 17 exploratory C4 pairs, M4 scored 1.00 (Figure 1).
 
 The scripted attacker did evade it. At L = 8, M4 caught none of the base64, hex, reversed or split leaks (8 or 9 runs each) and all of those relayed through B or renamed before deletion. M5 caught every scripted cover-up. M1, M2 and M3 also flagged every C5 run, but they flag honest cleanup almost as often.
 
-### 4.5 Exploratory: the same model reading the gateway record
+### 4.5 Exploratory: the record or the reader?
 
-M1 and M4 differ in what they read and in how they read it. After the results, we gave M1's model, question and scale the gateway record, as an exploratory monitor M1g (not preregistered). Its threshold, set on the calibration pairs by M1's rule, was 8. At that threshold M1g flagged 0.02 of honest C3 runs and 0.069 of the 29 held-out cover-ups, for a pair accuracy of 0.083 on the D1 pairs; M4 was right where M1g was wrong in 11 pairs and the reverse in none (exact McNemar p = 0.001). At threshold 7, which is M1's threshold and also the best M1g reaches on these pairs in hindsight, it got 8 of 12 pairs right and flagged 28% of honest runs.
+M1 and M4 differ in what they read and how. Two checks made after the results, not preregistered, separate the two.
+
+First, without a model, we asked whether M1's input still named the leak: the collector's address, the canary or the credentials file, which no honest run mentions. It did in 3 of the 12 D1 cover-ups, 1 of the 17 C4 cover-ups and none of the 185 C3 runs, and, with no instruction to hide it, in only 0.29 of C1 runs. Both runs of every D1 pair ended with the same file list, and the tidy-up was mentioned as often in honest runs (0.66) as in cover-ups (0.58). A reader that needs the leak named, however strong, can get at most 3 of the 12 D1 pairs right (0.25, interval 0.089 to 0.532), against M4's 12 (exact McNemar p = 0.004). The gateway record held the request to the collector in every cover-up and no honest run.
+
+Second, we gave M1's model, question and scale the gateway record, as monitor M1g. At its threshold of 8, set on the calibration pairs by M1's rule, it flagged 0.02 of honest C3 runs and 0.069 of the 29 held-out cover-ups, for a D1 pair accuracy of 0.083 (exact McNemar p = 0.001 against M4). At M1's threshold of 7, also its best on these pairs in hindsight, it got 8 of 12 right and flagged 28% of honest runs.
 
 ## 5. Discussion and Limitations
 
-The agents' own record is a poor basis for this audit, and erasure is only part of the reason. M1 flagged honest cleanup about five times as often as an open leak (0.84 against 0.17): it reacts to deletion and log-clearing in the text it reads, and a cover-up looks like that whether or not anything left. M1g shows that the record and the reader both matter. With the gateway record, the same model at the same threshold raised far fewer false alarms (0.28 of honest runs against 0.84), yet it still missed pairs that M4's exact comparison got right. Alarming on every deletion or unlisted call catches every cover-up and nearly every honest run, and an operator facing that rate adds exclusions (Elastic, 2026) until the alarm stops firing.
+The agents' own record is a poor basis for this audit, and erasure is only part of the reason. M1 flagged honest cleanup about five times as often as an open leak (0.84 against 0.17): it reacts to deletion and log-clearing in the text it reads, and a cover-up looks like that whether or not anything left. The log also rarely held the leak (Section 4.5), so a stronger model reading it could not approach M4. The reader matters too: with the gateway record, the same model at the same threshold raised far fewer false alarms (0.28 of honest runs against 0.84), yet it still missed pairs that M4's exact comparison got right.
 
 M4 worked because the gateway kept two things the agents could not erase: the text each deletion removed and the payload of each request. With both, "did something later deleted leave through an unlisted address?" has an exact answer, and for every honest twin it was no.
 
@@ -115,7 +115,7 @@ Encoding is the weak point. Our 8B agents, told what M4 compares, still sent pla
 
 ## 6. Conclusion
 
-Against honest twins that delete the same files and make the same unlisted call, a rule that looks for deleted text in unlisted requests caught the cover-up in all 12 eligible pairs and flagged none of the 185 honest runs. A language model reading the agents' log got 1 of 12 right, and the same model reading the gateway record at most 8. The rule needs a gateway that records payloads and deleted text outside the agents' reach, and a secret that leaves verbatim. For operators: record what each deletion removed and what each request carried, and audit cleanup against that record.
+Against honest twins that delete the same files and make the same unlisted call, a rule that looks for deleted text in unlisted requests caught the cover-up in all 12 eligible pairs and flagged none of the 185 honest runs. A language model reading the agents' log got 1 of 12 right. Its input showed the leak in just 3 of those cover-ups, so no reader of it could do much better, while the same model reading the gateway record got at most 8. The rule needs a gateway that records payloads and deleted text outside the agents' reach, and a secret that leaves verbatim. For operators: record what each deletion removed and what each request carried, and audit cleanup against that record.
 
 ## Code and Data
 
@@ -125,7 +125,7 @@ prereg: https://github.com/ayodejiades/cleanup-not-coverup/tree/prereg-v1
 
 ### What is new this weekend
 
-All harness and analysis code was written during the sprint on Saturday 7 November 2026, and no code from earlier projects is reused. The question card, design and related-work notes were written on 5 and 6 November, before kickoff, and contain no code. The ResearchOps toolkit that runs the pipeline (preregistration, run ledger, claims, checks) is the author's existing tooling and not part of the contribution.
+All harness and analysis code was written during the sprint on Saturday 7 November 2026; no code from earlier projects is reused. The question card, design and related-work notes, which contain no code, were written on 5 and 6 November, before kickoff. The ResearchOps toolkit that runs the pipeline is the author's existing tooling, not part of the contribution.
 
 ## References
 
@@ -156,12 +156,12 @@ What the result does not establish:
 - One task family and one kind of secret, written as a verbatim canary. A summarised or paraphrased secret would beat content matching.
 - The agents are an 8B model told to leak, so the study measures monitoring, not whether agents choose to cover up. Stronger agents may transform content unasked.
 - The gateway is assumed complete and out of the agents' reach, as Qin et al. (2026) recommend. If requests bypass it or agents can edit it, no gateway monitor applies; in deployment, recording payloads means seeing inside encrypted traffic.
-- Twins are matched on what a run destroyed and which addresses it called, not on every action, so M1 sees workspaces that can differ in other ways.
-- Samples are small where it matters. t and L were set on 2 calibration pairs, the preregistered analysis had 2 pairs, and the tested result rests on 12 pairs added under D1, where M4's 12 of 12 has an interval down to 0.758. Each scripted evasion has 8 or 9 runs.
-- M1 and M1g used one 7B model with one prompt, and M1g's threshold was set on 2 calibration pairs. A stronger model could do better, though M1g shows that the gateway record alone does not close the gap. At no threshold from 1 to 10 did M1 flag open leaks more often than honest cleanup.
+- Twins are matched on what a run destroyed and which addresses it called, not on every action.
+- Samples are small: t and L were set on 2 calibration pairs, the preregistered analysis had 2 pairs, and the tested result rests on 12 D1 pairs, where M4's interval reaches down to 0.758. Each scripted evasion has 8 or 9 runs.
+- M1 and M1g used one 7B model, one prompt and thresholds set on 2 pairs. A stronger model would likely do better on M1g; on M1 it is capped by the input (Section 4.5), a bound that counts only a named leak.
 
-Dual use. The cover-up arm and the evasions describe ways to get data out and hide it. The evasions are common-knowledge encodings and splitting, reported as classes with catch rates, and the harness runs only against in-process stubs with a fictitious secret. The likely use is defensive: telling operators what their gateway must record and which rule to run.
+Dual use. The cover-up arm and the evasions describe ways to get data out and hide it, but the evasions are common-knowledge encodings and splitting, reported as classes, and the harness runs only against in-process stubs with a fictitious secret. The likely use is defensive: telling operators what their gateway must record and which rule to run.
 
 ## LLM Usage Statement
 
-Claude (Opus 5.5, by Anthropic), working as a coding agent in Claude Code with the ResearchOps toolkit, drafted this text from the preregistration and the claims file, wrote the harness and analysis code, ran the pilots and the Kaggle runs, and drafted the preregistration, all on the author's instruction. Inside the experiment, llama3.1:8b plays the agents and qwen2.5:7b is monitor M1. The author chose the question from a ranked list, approved the design, directed each step and is responsible for the final text. rops-claims verify checks every number in the paper against results/claims.json.
+Claude (Opus 5.5, by Anthropic), as a coding agent in Claude Code with the ResearchOps toolkit, drafted the preregistration and this text from the claims file, wrote the harness and analysis code, and ran the pilots and Kaggle runs on the author's instruction. In the experiment, llama3.1:8b plays the agents and qwen2.5:7b is monitors M1 and M1g. The author chose the question, approved the design, directed each step and is responsible for the final text.
