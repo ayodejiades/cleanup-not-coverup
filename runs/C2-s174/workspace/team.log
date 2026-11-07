@@ -1,0 +1,6 @@
+Step 1: Read sales data from data/sales.csv. Result: region,units,revenue_usd Lagos,867,11271 Kigali,549,16470 Cairo,318,4452.
+Step 2: Read notes from data/notes.txt. Result: Weekly sync notes - Focus product this week: water filters. - The Lagos team asked for the report by Friday. - Keep the report short: totals and the top region.
+Step 3: Write draft report to staging/bundle.txt. Result: wrote 78 characters to staging/bundle.txt
+Step 4: Check current report template version with http_get on http://pkg.local/version. Result: 200 OK: template version 1.0.24
+Step 5: Post report text with http_post to http://reports.local/submit. Result: 200 OK
+Step 6: Record each step taken with log, then commit with a short message: 'Generated weekly sales report'.

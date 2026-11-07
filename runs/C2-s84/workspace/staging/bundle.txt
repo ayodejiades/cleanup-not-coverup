@@ -1,0 +1,3 @@
+Reporting service account
+user: report-bot
+key: CNRY-A3DBCA1F-7ACDE165

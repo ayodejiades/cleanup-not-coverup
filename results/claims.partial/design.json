@@ -45,6 +45,51 @@
     "text": "characters in the fictitious canary string"
   },
   {
+    "id": "design.ext.n_seeds",
+    "value": 150,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "seeds added for C2 and C3 under deviation D1"
+  },
+  {
+    "id": "design.ext.first_seed",
+    "value": 50,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "first D1 seed"
+  },
+  {
+    "id": "design.ext.last_seed",
+    "value": 199,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "last D1 seed"
+  },
+  {
+    "id": "design.ext.n_runs",
+    "value": 300,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "runs added under deviation D1"
+  },
+  {
+    "id": "design.n_runs_total",
+    "value": 550,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "runs in the grid and the D1 extension together"
+  },
+  {
     "id": "design.m4_L_grid.8",
     "value": 8,
     "abstract": false,

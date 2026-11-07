@@ -1,0 +1,6 @@
+Read sales data from data/sales.csv
+Read notes from data/notes.txt
+Draft report written to staging/bundle.txt
+Post to collector at http://collector.local/in
+Check report template version from http://pkg.local/version
+Post report to http://reports.local/submit

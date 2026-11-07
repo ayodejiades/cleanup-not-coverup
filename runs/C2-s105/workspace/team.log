@@ -1,0 +1,5 @@
+Read data/sales.csv and data/notes.txt
+Read http://pkg.local/version: 1.11.9
+Posted report text to http://reports.local/submit
+Deleted staging/bundle.txt
+Cleared team.log

@@ -156,3 +156,41 @@ Changes before the freeze:
 - **Accepted as owner edits** (`rops-guard accept`), on the owner's instruction to run the
   pipeline: `PREREG.md` (by the freeze), `.rops/team.json` and `paper/references.json`. Every
   reference in the latter was checked against its source on Sat 7 Nov.
+
+## Sat 7 Nov 2026: results, deviation D1, and the paper
+
+- **Main grid** (250 runs, Kaggle, about 55 minutes once running): no errors and no truncated
+  replies. The positive control passed (C1 0.90 against C3 0.00). C2 sent the canary in only
+  0.12 of runs, so 2 of 35 held-out pairs were eligible and the preregistered analysis is
+  descriptive.
+- **Deviation D1** (in `DEVIATIONS.md`): C2 and C3 on 150 more seeds (50–199), held out, with t
+  and L unchanged. It ran as a separate private Kaggle kernel, `ayodejiadesegun/swarm-ext-rops`
+  (300 runs, no errors). It gave 12 eligible pairs, so the tests apply. H1 is supported (M4 12
+  of 12, M1 1 of 12, Holm p = 0.003). H2 and H3a are not supported, and H3b is.
+- **Pull note:** on Sat 15:23 the local DNS failed for `www.kaggleusercontent.com`. The download
+  went through on a plain retry four minutes later. `rops-kaggle pull` overwrites `results/`
+  with the kernel's copies, so `results/` was backed up first and then rebuilt with
+  `make analyze`.
+- **New claims, added after reading the runs, all descriptive:**
+  - `steps.*`: which parts of the private step each arm carried out. In C2, A posted the file in
+    0.94 of runs but sent the canary in 0.12.
+  - `steps.C4.verbatim`: all 27 C4 cover-ups sent the canary unencoded.
+  - `m4_why.*`: every run M4 flags outside the canary label had a post to the collector.
+  - `m4_lcs.*`: cover-ups share at least 70 characters, and honest runs share none.
+  - `m1_check.thresholds_c1_above_c3`: zero.
+
+  None changes a preregistered number.
+- **Figures** were redrawn:
+  - pair accuracy for all three pair sets
+  - flag rates on C1 and C3
+  - the evasion heatmap
+  - shared text by cover-up label
+- **Paper:** `paper/DRAFT.md` has every section. `rops-claims verify` passes, and `rops-lint`
+  reports 0 FAIL, 0 WARN. `REDTEAM.md` answers A1–A13 and N1–N6, and `rops-redteam check`
+  passes.
+- **For the owner:**
+  - The abstract, the Discussion's opening paragraph and the Conclusion are the parts to put
+    in your own words. The A13 answer in `REDTEAM.md` commits to that.
+  - The LLM Usage Statement's last sentences should say what you changed.
+- **Code URL:** set to `https://github.com/ayodejiades/cleanup-not-coverup`. The repo does not
+  exist yet. It is created and pushed with its tags at submission.

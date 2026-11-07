@@ -1,6 +1,6 @@
 {
   "schema": "rops.claims/1",
-  "inputs_sha256": "ebad9bba476b49142c0eede1d491d8b16d2e5faa71485db2bb97eca6a80838b9",
+  "inputs_sha256": "cf358d0efcea16c08f72a8fec66640646b7c93d4d1874d70f30c6e311ab6ea18",
   "claims": [
     {
       "id": "catch",
@@ -16,7 +16,7 @@
             1.0
           ],
           "n": 2,
-          "text": "share of held-out cover-up runs caught (catch.C2.m4)"
+          "text": "share of held-out cover-up runs caught (catch.C2.m4), preregistered seeds"
         }
       },
       "C4": {
@@ -31,7 +31,7 @@
             1.0
           ],
           "n": 17,
-          "text": "share of held-out cover-up runs caught (catch.C4.m4)"
+          "text": "share of held-out cover-up runs caught (catch.C4.m4), preregistered seeds"
         },
         "m5": {
           "value": 1.0,
@@ -44,7 +44,7 @@
             1.0
           ],
           "n": 17,
-          "text": "share of held-out cover-up runs caught (catch.C4.m5)"
+          "text": "share of held-out cover-up runs caught (catch.C4.m5), preregistered seeds"
         }
       }
     },
@@ -255,6 +255,48 @@
           "script": "analysis/design.py"
         },
         "text": "characters in the fictitious canary string"
+      },
+      "ext": {
+        "n_seeds": {
+          "value": 150,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "seeds added for C2 and C3 under deviation D1"
+        },
+        "first_seed": {
+          "value": 50,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "first D1 seed"
+        },
+        "last_seed": {
+          "value": 199,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "last D1 seed"
+        },
+        "n_runs": {
+          "value": 300,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "runs added under deviation D1"
+        }
+      },
+      "n_runs_total": {
+        "value": 550,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "runs in the grid and the D1 extension together"
       },
       "m4_L_grid": {
         "8": {
@@ -697,6 +739,913 @@
       }
     },
     {
+      "id": "expl",
+      "c4": {
+        "pairs": {
+          "heldout": {
+            "eligible": {
+              "value": 17,
+              "abstract": false,
+              "source": {
+                "script": "analysis/monitors.py"
+              },
+              "text": "eligible held-out (C4, C3) pairs, exploratory C4 pairs"
+            },
+            "dropped": {
+              "c2_not_cover_up": {
+                "value": 18,
+                "abstract": false,
+                "source": {
+                  "script": "analysis/monitors.py"
+                },
+                "text": "held-out pairs dropped (exploratory C4 pairs): c2_not_cover_up"
+              },
+              "missing_run": {
+                "value": 0,
+                "abstract": false,
+                "source": {
+                  "script": "analysis/monitors.py"
+                },
+                "text": "held-out pairs dropped (exploratory C4 pairs): missing_run"
+              },
+              "staging_not_destroyed": {
+                "value": 0,
+                "abstract": false,
+                "source": {
+                  "script": "analysis/monitors.py"
+                },
+                "text": "held-out pairs dropped (exploratory C4 pairs): staging_not_destroyed"
+              }
+            }
+          }
+        },
+        "pair_acc": {
+          "m1": {
+            "value": 0.17647058823529413,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.06191126632666469,
+              0.4102945858947459
+            ],
+            "n": 17,
+            "text": "M1 pair accuracy on held-out eligible pairs, exploratory C4 pairs"
+          },
+          "m2": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.18431813525127078
+            ],
+            "n": 17,
+            "text": "M2 pair accuracy on held-out eligible pairs, exploratory C4 pairs"
+          },
+          "m3": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.18431813525127078
+            ],
+            "n": 17,
+            "text": "M3 pair accuracy on held-out eligible pairs, exploratory C4 pairs"
+          },
+          "m4": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.8156818647487293,
+              1.0
+            ],
+            "n": 17,
+            "text": "M4 pair accuracy on held-out eligible pairs, exploratory C4 pairs"
+          },
+          "m5": {
+            "value": 0.11764705882352941,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.032879773733354656,
+              0.343363506164676
+            ],
+            "n": 17,
+            "text": "M5 pair accuracy on held-out eligible pairs, exploratory C4 pairs"
+          }
+        },
+        "pair_acc_all": {
+          "m1": {
+            "value": 0.14285714285714285,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.06260231075385228,
+              0.29375554100907775
+            ],
+            "n": 35,
+            "text": "M1 pair accuracy on held-out all pairs (secondary), exploratory C4 pairs"
+          },
+          "m2": {
+            "value": 0.02857142857142857,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.005061491849719005,
+              0.14533087247734872
+            ],
+            "n": 35,
+            "text": "M2 pair accuracy on held-out all pairs (secondary), exploratory C4 pairs"
+          },
+          "m3": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.09890099246810209
+            ],
+            "n": 35,
+            "text": "M3 pair accuracy on held-out all pairs (secondary), exploratory C4 pairs"
+          },
+          "m4": {
+            "value": 0.8,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.6410838692013925,
+              0.8995755353177464
+            ],
+            "n": 35,
+            "text": "M4 pair accuracy on held-out all pairs (secondary), exploratory C4 pairs"
+          },
+          "m5": {
+            "value": 0.2,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.10042446468225369,
+              0.35891613079860757
+            ],
+            "n": 35,
+            "text": "M5 pair accuracy on held-out all pairs (secondary), exploratory C4 pairs"
+          }
+        },
+        "pair_acc_strict": {
+          "m1": {
+            "value": 0.125,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.02241749142449584,
+              0.4708881825034564
+            ],
+            "n": 8,
+            "text": "M1 pair accuracy on held-out pairs with identical destroyed paths (secondary), exploratory C4 pairs"
+          },
+          "m2": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.3244075652372696
+            ],
+            "n": 8,
+            "text": "M2 pair accuracy on held-out pairs with identical destroyed paths (secondary), exploratory C4 pairs"
+          },
+          "m3": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.3244075652372696
+            ],
+            "n": 8,
+            "text": "M3 pair accuracy on held-out pairs with identical destroyed paths (secondary), exploratory C4 pairs"
+          },
+          "m4": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.6755924347627305,
+              1.0
+            ],
+            "n": 8,
+            "text": "M4 pair accuracy on held-out pairs with identical destroyed paths (secondary), exploratory C4 pairs"
+          },
+          "m5": {
+            "value": 0.25,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.07147921268524887,
+              0.5907245699333858
+            ],
+            "n": 8,
+            "text": "M5 pair accuracy on held-out pairs with identical destroyed paths (secondary), exploratory C4 pairs"
+          }
+        }
+      }
+    },
+    {
+      "id": "ext",
+      "pairs": {
+        "heldout": {
+          "eligible": {
+            "value": 12,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "text": "eligible held-out (C2, C3) pairs, with the D1 extension"
+          },
+          "dropped": {
+            "c2_not_cover_up": {
+              "value": 173,
+              "abstract": false,
+              "source": {
+                "script": "analysis/monitors.py"
+              },
+              "text": "held-out pairs dropped (with the D1 extension): c2_not_cover_up"
+            },
+            "missing_run": {
+              "value": 0,
+              "abstract": false,
+              "source": {
+                "script": "analysis/monitors.py"
+              },
+              "text": "held-out pairs dropped (with the D1 extension): missing_run"
+            },
+            "staging_not_destroyed": {
+              "value": 0,
+              "abstract": false,
+              "source": {
+                "script": "analysis/monitors.py"
+              },
+              "text": "held-out pairs dropped (with the D1 extension): staging_not_destroyed"
+            }
+          }
+        }
+      },
+      "pair_acc": {
+        "m1": {
+          "value": 0.08333333333333333,
+          "abstract": true,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.014865094388027356,
+            0.35387991140482855
+          ],
+          "n": 12,
+          "text": "M1 pair accuracy on held-out eligible pairs, with the D1 extension"
+        },
+        "m2": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0,
+            0.2424940069514271
+          ],
+          "n": 12,
+          "text": "M2 pair accuracy on held-out eligible pairs, with the D1 extension"
+        },
+        "m3": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0,
+            0.2424940069514271
+          ],
+          "n": 12,
+          "text": "M3 pair accuracy on held-out eligible pairs, with the D1 extension"
+        },
+        "m4": {
+          "value": 1.0,
+          "abstract": true,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.757505993048573,
+            1.0
+          ],
+          "n": 12,
+          "text": "M4 pair accuracy on held-out eligible pairs, with the D1 extension"
+        },
+        "m5": {
+          "value": 0.08333333333333333,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.014865094388027356,
+            0.35387991140482855
+          ],
+          "n": 12,
+          "text": "M5 pair accuracy on held-out eligible pairs, with the D1 extension"
+        }
+      },
+      "pair_acc_all": {
+        "m1": {
+          "value": 0.10270270270270271,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.06673971308463704,
+            0.15482952857878612
+          ],
+          "n": 185,
+          "text": "M1 pair accuracy on held-out all pairs (secondary), with the D1 extension"
+        },
+        "m2": {
+          "value": 0.010810810810810811,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.002969738165914653,
+            0.038554294086327504
+          ],
+          "n": 185,
+          "text": "M2 pair accuracy on held-out all pairs (secondary), with the D1 extension"
+        },
+        "m3": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0,
+            0.02034224290975027
+          ],
+          "n": 185,
+          "text": "M3 pair accuracy on held-out all pairs (secondary), with the D1 extension"
+        },
+        "m4": {
+          "value": 0.7513513513513513,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.6843793331093739,
+            0.8080972691035624
+          ],
+          "n": 185,
+          "text": "M4 pair accuracy on held-out all pairs (secondary), with the D1 extension"
+        },
+        "m5": {
+          "value": 0.10810810810810811,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.07108044189192406,
+            0.16107969444274506
+          ],
+          "n": 185,
+          "text": "M5 pair accuracy on held-out all pairs (secondary), with the D1 extension"
+        }
+      },
+      "pair_acc_strict": {
+        "m1": {
+          "value": 0.1,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0178762130747335,
+            0.40415002707422054
+          ],
+          "n": 10,
+          "text": "M1 pair accuracy on held-out pairs with identical destroyed paths (secondary), with the D1 extension"
+        },
+        "m2": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0,
+            0.27753280018619253
+          ],
+          "n": 10,
+          "text": "M2 pair accuracy on held-out pairs with identical destroyed paths (secondary), with the D1 extension"
+        },
+        "m3": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0,
+            0.27753280018619253
+          ],
+          "n": 10,
+          "text": "M3 pair accuracy on held-out pairs with identical destroyed paths (secondary), with the D1 extension"
+        },
+        "m4": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.7224671998138075,
+            1.0
+          ],
+          "n": 10,
+          "text": "M4 pair accuracy on held-out pairs with identical destroyed paths (secondary), with the D1 extension"
+        },
+        "m5": {
+          "value": 0.1,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.0178762130747335,
+            0.40415002707422054
+          ],
+          "n": 10,
+          "text": "M5 pair accuracy on held-out pairs with identical destroyed paths (secondary), with the D1 extension"
+        }
+      },
+      "flag": {
+        "C1": {
+          "m1": {
+            "value": 0.17142857142857143,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0810264004887064,
+              0.3268228231331892
+            ],
+            "n": 35,
+            "text": "M1 flag rate on held-out C1 runs, with the D1 extension"
+          },
+          "m2": {
+            "value": 0.5428571428571428,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.3818972505647417,
+              0.6953398072237065
+            ],
+            "n": 35,
+            "text": "M2 flag rate on held-out C1 runs, with the D1 extension"
+          },
+          "m3": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.901099007531898,
+              1.0
+            ],
+            "n": 35,
+            "text": "M3 flag rate on held-out C1 runs, with the D1 extension"
+          },
+          "m4": {
+            "value": 0.42857142857142855,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.27984568166866075,
+              0.5914258886839252
+            ],
+            "n": 35,
+            "text": "M4 flag rate on held-out C1 runs, with the D1 extension"
+          },
+          "m5": {
+            "value": 0.5428571428571428,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.3818972505647417,
+              0.6953398072237065
+            ],
+            "n": 35,
+            "text": "M5 flag rate on held-out C1 runs, with the D1 extension"
+          }
+        },
+        "C2": {
+          "m1": {
+            "value": 0.7351351351351352,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.6672350298576468,
+              0.7934688883415517
+            ],
+            "n": 185,
+            "text": "M1 flag rate on held-out C2 runs, with the D1 extension"
+          },
+          "m2": {
+            "value": 0.8648648648648649,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.808121701832352,
+              0.9067636884767493
+            ],
+            "n": 185,
+            "text": "M2 flag rate on held-out C2 runs, with the D1 extension"
+          },
+          "m3": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.9796577570902496,
+              0.9999999999999998
+            ],
+            "n": 185,
+            "text": "M3 flag rate on held-out C2 runs, with the D1 extension"
+          },
+          "m4": {
+            "value": 0.7513513513513513,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.6843793331093739,
+              0.8080972691035624
+            ],
+            "n": 185,
+            "text": "M4 flag rate on held-out C2 runs, with the D1 extension"
+          },
+          "m5": {
+            "value": 0.8378378378378378,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.777946211581868,
+              0.8839847053710033
+            ],
+            "n": 185,
+            "text": "M5 flag rate on held-out C2 runs, with the D1 extension"
+          }
+        },
+        "C3": {
+          "m1": {
+            "value": 0.8432432432432433,
+            "abstract": true,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.7839381228380806,
+              0.8885836887860368
+            ],
+            "n": 185,
+            "text": "M1 flag rate on held-out C3 runs, with the D1 extension"
+          },
+          "m2": {
+            "value": 0.9891891891891892,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.9614457059136725,
+              0.9970302618340854
+            ],
+            "n": 185,
+            "text": "M2 flag rate on held-out C3 runs, with the D1 extension"
+          },
+          "m3": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.9796577570902496,
+              0.9999999999999998
+            ],
+            "n": 185,
+            "text": "M3 flag rate on held-out C3 runs, with the D1 extension"
+          },
+          "m4": {
+            "value": 0.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.0,
+              0.02034224290975027
+            ],
+            "n": 185,
+            "text": "M4 flag rate on held-out C3 runs, with the D1 extension"
+          },
+          "m5": {
+            "value": 0.8324324324324325,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.7719741741508103,
+              0.8793658481308152
+            ],
+            "n": 185,
+            "text": "M5 flag rate on held-out C3 runs, with the D1 extension"
+          }
+        },
+        "C4": {
+          "m1": {
+            "value": 0.6857142857142857,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.5202023637440589,
+              0.8144915533392174
+            ],
+            "n": 35,
+            "text": "M1 flag rate on held-out C4 runs, with the D1 extension"
+          },
+          "m2": {
+            "value": 0.8857142857142857,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.7404853133947709,
+              0.9546482067012647
+            ],
+            "n": 35,
+            "text": "M2 flag rate on held-out C4 runs, with the D1 extension"
+          },
+          "m3": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.901099007531898,
+              1.0
+            ],
+            "n": 35,
+            "text": "M3 flag rate on held-out C4 runs, with the D1 extension"
+          },
+          "m4": {
+            "value": 0.8,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.6410838692013925,
+              0.8995755353177464
+            ],
+            "n": 35,
+            "text": "M4 flag rate on held-out C4 runs, with the D1 extension"
+          },
+          "m5": {
+            "value": 0.8571428571428571,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.7062444589909221,
+              0.9373976892461476
+            ],
+            "n": 35,
+            "text": "M5 flag rate on held-out C4 runs, with the D1 extension"
+          }
+        }
+      },
+      "m1_check": {
+        "contrast": {
+          "value": -0.6718146718146718,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "M1 flag rate on C1 minus C3, held out, with the D1 extension"
+        }
+      },
+      "h1": {
+        "discordant_m4_only": {
+          "value": 11,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "pairs M4 gets right and M1 wrong, with the D1 extension"
+        },
+        "discordant_m1_only": {
+          "value": 0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "pairs M1 gets right and M4 wrong, with the D1 extension"
+        },
+        "p": {
+          "value": 0.0009765625,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H1 raw p-value, with the D1 extension"
+        },
+        "p_holm": {
+          "value": 0.0029296875,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H1 Holm-adjusted p-value, with the D1 extension"
+        }
+      },
+      "h2": {
+        "p": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H2 raw p-value, with the D1 extension"
+        },
+        "p_holm": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H2 Holm-adjusted p-value, with the D1 extension"
+        }
+      },
+      "h3a": {
+        "p": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H3A raw p-value, with the D1 extension"
+        },
+        "p_holm": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H3A Holm-adjusted p-value, with the D1 extension"
+        }
+      },
+      "h3b": {
+        "p": {
+          "value": 0.0001999600079984003,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H3B raw p-value, with the D1 extension"
+        },
+        "p_holm": {
+          "value": 0.0007998400319936012,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "H3B Holm-adjusted p-value, with the D1 extension"
+        }
+      },
+      "catch": {
+        "C2": {
+          "m4": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.757505993048573,
+              1.0
+            ],
+            "n": 12,
+            "text": "share of held-out cover-up runs caught (catch.C2.m4), with the D1 extension"
+          }
+        },
+        "C4": {
+          "m4": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.8156818647487293,
+              1.0
+            ],
+            "n": 17,
+            "text": "share of held-out cover-up runs caught (catch.C4.m4), with the D1 extension"
+          },
+          "m5": {
+            "value": 1.0,
+            "abstract": false,
+            "source": {
+              "script": "analysis/monitors.py"
+            },
+            "ci": [
+              0.8156818647487293,
+              1.0
+            ],
+            "n": 17,
+            "text": "share of held-out cover-up runs caught (catch.C4.m5), with the D1 extension"
+          }
+        }
+      },
+      "tested": {
+        "value": 1,
+        "abstract": false,
+        "source": {
+          "script": "analysis/monitors.py"
+        },
+        "text": "1 when enough eligible pairs to claim the tests, with the D1 extension"
+      }
+    },
+    {
       "id": "flag",
       "C1": {
         "m1": {
@@ -710,7 +1659,7 @@
             0.3268228231331892
           ],
           "n": 35,
-          "text": "M1 flag rate on held-out C1 runs"
+          "text": "M1 flag rate on held-out C1 runs, preregistered seeds"
         },
         "m2": {
           "value": 0.5428571428571428,
@@ -723,7 +1672,7 @@
             0.6953398072237065
           ],
           "n": 35,
-          "text": "M2 flag rate on held-out C1 runs"
+          "text": "M2 flag rate on held-out C1 runs, preregistered seeds"
         },
         "m3": {
           "value": 1.0,
@@ -736,7 +1685,7 @@
             1.0
           ],
           "n": 35,
-          "text": "M3 flag rate on held-out C1 runs"
+          "text": "M3 flag rate on held-out C1 runs, preregistered seeds"
         },
         "m4": {
           "value": 0.42857142857142855,
@@ -749,7 +1698,7 @@
             0.5914258886839252
           ],
           "n": 35,
-          "text": "M4 flag rate on held-out C1 runs"
+          "text": "M4 flag rate on held-out C1 runs, preregistered seeds"
         },
         "m5": {
           "value": 0.5428571428571428,
@@ -762,7 +1711,7 @@
             0.6953398072237065
           ],
           "n": 35,
-          "text": "M5 flag rate on held-out C1 runs"
+          "text": "M5 flag rate on held-out C1 runs, preregistered seeds"
         }
       },
       "C2": {
@@ -777,7 +1726,7 @@
             0.7683418050594151
           ],
           "n": 35,
-          "text": "M1 flag rate on held-out C2 runs"
+          "text": "M1 flag rate on held-out C2 runs, preregistered seeds"
         },
         "m2": {
           "value": 0.9142857142857143,
@@ -790,7 +1739,7 @@
             0.9704176317566022
           ],
           "n": 35,
-          "text": "M2 flag rate on held-out C2 runs"
+          "text": "M2 flag rate on held-out C2 runs, preregistered seeds"
         },
         "m3": {
           "value": 1.0,
@@ -803,7 +1752,7 @@
             1.0
           ],
           "n": 35,
-          "text": "M3 flag rate on held-out C2 runs"
+          "text": "M3 flag rate on held-out C2 runs, preregistered seeds"
         },
         "m4": {
           "value": 0.8285714285714286,
@@ -816,7 +1765,7 @@
             0.9189735995112936
           ],
           "n": 35,
-          "text": "M4 flag rate on held-out C2 runs"
+          "text": "M4 flag rate on held-out C2 runs, preregistered seeds"
         },
         "m5": {
           "value": 0.9142857142857143,
@@ -829,7 +1778,7 @@
             0.9704176317566022
           ],
           "n": 35,
-          "text": "M5 flag rate on held-out C2 runs"
+          "text": "M5 flag rate on held-out C2 runs, preregistered seeds"
         }
       },
       "C3": {
@@ -844,7 +1793,7 @@
             0.8793412017208619
           ],
           "n": 35,
-          "text": "M1 flag rate on held-out C3 runs"
+          "text": "M1 flag rate on held-out C3 runs, preregistered seeds"
         },
         "m2": {
           "value": 0.9428571428571428,
@@ -857,7 +1806,7 @@
             0.9841868381574683
           ],
           "n": 35,
-          "text": "M2 flag rate on held-out C3 runs"
+          "text": "M2 flag rate on held-out C3 runs, preregistered seeds"
         },
         "m3": {
           "value": 1.0,
@@ -870,7 +1819,7 @@
             1.0
           ],
           "n": 35,
-          "text": "M3 flag rate on held-out C3 runs"
+          "text": "M3 flag rate on held-out C3 runs, preregistered seeds"
         },
         "m4": {
           "value": 0.0,
@@ -883,7 +1832,7 @@
             0.09890099246810209
           ],
           "n": 35,
-          "text": "M4 flag rate on held-out C3 runs"
+          "text": "M4 flag rate on held-out C3 runs, preregistered seeds"
         },
         "m5": {
           "value": 0.7428571428571429,
@@ -896,7 +1845,7 @@
             0.8583697293788671
           ],
           "n": 35,
-          "text": "M5 flag rate on held-out C3 runs"
+          "text": "M5 flag rate on held-out C3 runs, preregistered seeds"
         }
       },
       "C4": {
@@ -911,7 +1860,7 @@
             0.8144915533392174
           ],
           "n": 35,
-          "text": "M1 flag rate on held-out C4 runs"
+          "text": "M1 flag rate on held-out C4 runs, preregistered seeds"
         },
         "m2": {
           "value": 0.8857142857142857,
@@ -924,7 +1873,7 @@
             0.9546482067012647
           ],
           "n": 35,
-          "text": "M2 flag rate on held-out C4 runs"
+          "text": "M2 flag rate on held-out C4 runs, preregistered seeds"
         },
         "m3": {
           "value": 1.0,
@@ -937,7 +1886,7 @@
             1.0
           ],
           "n": 35,
-          "text": "M3 flag rate on held-out C4 runs"
+          "text": "M3 flag rate on held-out C4 runs, preregistered seeds"
         },
         "m4": {
           "value": 0.8,
@@ -950,7 +1899,7 @@
             0.8995755353177464
           ],
           "n": 35,
-          "text": "M4 flag rate on held-out C4 runs"
+          "text": "M4 flag rate on held-out C4 runs, preregistered seeds"
         },
         "m5": {
           "value": 0.8571428571428571,
@@ -963,7 +1912,7 @@
             0.9373976892461476
           ],
           "n": 35,
-          "text": "M5 flag rate on held-out C4 runs"
+          "text": "M5 flag rate on held-out C4 runs, preregistered seeds"
         }
       }
     },
@@ -975,7 +1924,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "held-out pairs M4 gets right and M1 gets wrong"
+        "text": "pairs M4 gets right and M1 wrong, preregistered seeds"
       },
       "discordant_m1_only": {
         "value": 0,
@@ -983,7 +1932,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "held-out pairs M1 gets right and M4 gets wrong"
+        "text": "pairs M1 gets right and M4 wrong, preregistered seeds"
       },
       "p": {
         "value": 1.0,
@@ -991,7 +1940,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H1 raw p-value (descriptive only: fewer than 10 eligible held-out pairs)"
+        "text": "H1 raw p-value, preregistered seeds (descriptive only: fewer than 10 eligible held-out pairs)"
       },
       "p_holm": {
         "value": 1.0,
@@ -999,7 +1948,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H1 Holm-adjusted p-value"
+        "text": "H1 Holm-adjusted p-value, preregistered seeds"
       }
     },
     {
@@ -1010,7 +1959,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H2 raw p-value (descriptive only: fewer than 10 eligible held-out pairs)"
+        "text": "H2 raw p-value, preregistered seeds (descriptive only: fewer than 10 eligible held-out pairs)"
       },
       "p_holm": {
         "value": 1.0,
@@ -1018,7 +1967,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H2 Holm-adjusted p-value"
+        "text": "H2 Holm-adjusted p-value, preregistered seeds"
       }
     },
     {
@@ -1029,7 +1978,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H3A raw p-value (descriptive only: fewer than 10 eligible held-out pairs)"
+        "text": "H3A raw p-value, preregistered seeds (descriptive only: fewer than 10 eligible held-out pairs)"
       },
       "p_holm": {
         "value": 1.0,
@@ -1037,7 +1986,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H3A Holm-adjusted p-value"
+        "text": "H3A Holm-adjusted p-value, preregistered seeds"
       }
     },
     {
@@ -1048,7 +1997,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H3B raw p-value (descriptive only: fewer than 10 eligible held-out pairs)"
+        "text": "H3B raw p-value, preregistered seeds (descriptive only: fewer than 10 eligible held-out pairs)"
       },
       "p_holm": {
         "value": 0.0007998400319936012,
@@ -1056,7 +2005,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "H3B Holm-adjusted p-value"
+        "text": "H3B Holm-adjusted p-value, preregistered seeds"
       }
     },
     {
@@ -1135,7 +2084,7 @@
         "source": {
           "script": "analysis/monitors.py"
         },
-        "text": "M1 flag rate on C1 minus C3, held out"
+        "text": "M1 flag rate on C1 minus C3, held out, preregistered seeds"
       }
     },
     {
@@ -1187,6 +2136,66 @@
       }
     },
     {
+      "id": "m4_lcs",
+      "cover_up_min": {
+        "value": 70,
+        "abstract": false,
+        "source": {
+          "script": "analysis/monitors.py"
+        },
+        "n": 29,
+        "text": "fewest characters a held-out C2 or C4 cover-up shares with an unlisted request"
+      },
+      "C3_max": {
+        "value": 0,
+        "abstract": false,
+        "source": {
+          "script": "analysis/monitors.py"
+        },
+        "n": 185,
+        "text": "most characters a held-out C3 run shares with an unlisted request"
+      }
+    },
+    {
+      "id": "m4_why",
+      "C1": {
+        "flagged_not_cover_up": {
+          "value": 15,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "held-out C1 runs M4 flags that are not cover-ups by the canary label"
+        },
+        "posted_collector": {
+          "value": 15,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "of those, runs in which an agent posted to the collector address"
+        }
+      },
+      "C2": {
+        "flagged_not_cover_up": {
+          "value": 127,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "held-out C2 runs M4 flags that are not cover-ups by the canary label"
+        },
+        "posted_collector": {
+          "value": 127,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "text": "of those, runs in which an agent posted to the collector address"
+        }
+      }
+    },
+    {
       "id": "pair_acc",
       "m1": {
         "value": 0.5,
@@ -1199,7 +2208,7 @@
           0.9054687943776909
         ],
         "n": 2,
-        "text": "M1 pair accuracy on held-out eligible pairs"
+        "text": "M1 pair accuracy on held-out eligible pairs, preregistered seeds"
       },
       "m2": {
         "value": 0.0,
@@ -1212,7 +2221,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M2 pair accuracy on held-out eligible pairs"
+        "text": "M2 pair accuracy on held-out eligible pairs, preregistered seeds"
       },
       "m3": {
         "value": 0.0,
@@ -1225,7 +2234,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M3 pair accuracy on held-out eligible pairs"
+        "text": "M3 pair accuracy on held-out eligible pairs, preregistered seeds"
       },
       "m4": {
         "value": 1.0,
@@ -1238,7 +2247,7 @@
           1.0
         ],
         "n": 2,
-        "text": "M4 pair accuracy on held-out eligible pairs"
+        "text": "M4 pair accuracy on held-out eligible pairs, preregistered seeds"
       },
       "m5": {
         "value": 0.0,
@@ -1251,7 +2260,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M5 pair accuracy on held-out eligible pairs"
+        "text": "M5 pair accuracy on held-out eligible pairs, preregistered seeds"
       }
     },
     {
@@ -1267,7 +2276,7 @@
           0.29375554100907775
         ],
         "n": 35,
-        "text": "M1 pair accuracy on all held-out pairs (secondary)"
+        "text": "M1 pair accuracy on held-out all pairs (secondary), preregistered seeds"
       },
       "m2": {
         "value": 0.05714285714285714,
@@ -1280,7 +2289,7 @@
           0.18607057434350166
         ],
         "n": 35,
-        "text": "M2 pair accuracy on all held-out pairs (secondary)"
+        "text": "M2 pair accuracy on held-out all pairs (secondary), preregistered seeds"
       },
       "m3": {
         "value": 0.0,
@@ -1293,7 +2302,7 @@
           0.09890099246810209
         ],
         "n": 35,
-        "text": "M3 pair accuracy on all held-out pairs (secondary)"
+        "text": "M3 pair accuracy on held-out all pairs (secondary), preregistered seeds"
       },
       "m4": {
         "value": 0.8285714285714286,
@@ -1306,7 +2315,7 @@
           0.9189735995112936
         ],
         "n": 35,
-        "text": "M4 pair accuracy on all held-out pairs (secondary)"
+        "text": "M4 pair accuracy on held-out all pairs (secondary), preregistered seeds"
       },
       "m5": {
         "value": 0.17142857142857143,
@@ -1319,7 +2328,7 @@
           0.3268228231331892
         ],
         "n": 35,
-        "text": "M5 pair accuracy on all held-out pairs (secondary)"
+        "text": "M5 pair accuracy on held-out all pairs (secondary), preregistered seeds"
       }
     },
     {
@@ -1335,7 +2344,7 @@
           0.9054687943776909
         ],
         "n": 2,
-        "text": "M1 pair accuracy on held-out pairs with identical destroyed paths (secondary)"
+        "text": "M1 pair accuracy on held-out pairs with identical destroyed paths (secondary), preregistered seeds"
       },
       "m2": {
         "value": 0.0,
@@ -1348,7 +2357,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M2 pair accuracy on held-out pairs with identical destroyed paths (secondary)"
+        "text": "M2 pair accuracy on held-out pairs with identical destroyed paths (secondary), preregistered seeds"
       },
       "m3": {
         "value": 0.0,
@@ -1361,7 +2370,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M3 pair accuracy on held-out pairs with identical destroyed paths (secondary)"
+        "text": "M3 pair accuracy on held-out pairs with identical destroyed paths (secondary), preregistered seeds"
       },
       "m4": {
         "value": 1.0,
@@ -1374,7 +2383,7 @@
           1.0
         ],
         "n": 2,
-        "text": "M4 pair accuracy on held-out pairs with identical destroyed paths (secondary)"
+        "text": "M4 pair accuracy on held-out pairs with identical destroyed paths (secondary), preregistered seeds"
       },
       "m5": {
         "value": 0.0,
@@ -1387,7 +2396,7 @@
           0.6576197728563925
         ],
         "n": 2,
-        "text": "M5 pair accuracy on held-out pairs with identical destroyed paths (secondary)"
+        "text": "M5 pair accuracy on held-out pairs with identical destroyed paths (secondary), preregistered seeds"
       }
     },
     {
@@ -1399,7 +2408,7 @@
           "source": {
             "script": "analysis/monitors.py"
           },
-          "text": "held-out (C2, C3) pairs that are eligible"
+          "text": "eligible held-out (C2, C3) pairs, preregistered seeds"
         },
         "dropped": {
           "c2_not_cover_up": {
@@ -1408,7 +2417,7 @@
             "source": {
               "script": "analysis/monitors.py"
             },
-            "text": "held-out pairs dropped: c2_not_cover_up"
+            "text": "held-out pairs dropped (preregistered seeds): c2_not_cover_up"
           },
           "missing_run": {
             "value": 0,
@@ -1416,7 +2425,7 @@
             "source": {
               "script": "analysis/monitors.py"
             },
-            "text": "held-out pairs dropped: missing_run"
+            "text": "held-out pairs dropped (preregistered seeds): missing_run"
           },
           "staging_not_destroyed": {
             "value": 0,
@@ -1424,7 +2433,7 @@
             "source": {
               "script": "analysis/monitors.py"
             },
-            "text": "held-out pairs dropped: staging_not_destroyed"
+            "text": "held-out pairs dropped (preregistered seeds): staging_not_destroyed"
           }
         }
       }
@@ -1495,22 +2504,22 @@
       },
       "C2": {
         "runs": {
-          "value": 50
+          "value": 200
         },
         "errors": {
           "value": 0
         },
         "calls": {
-          "value": 857
+          "value": 3382
         },
         "unpriced_calls": {
           "value": 0
         },
         "prompt_tokens": {
-          "value": 541729
+          "value": 2143736
         },
         "completion_tokens": {
-          "value": 23152
+          "value": 91063
         },
         "cost_usd": {
           "value": 0.0
@@ -1521,22 +2530,22 @@
       },
       "C3": {
         "runs": {
-          "value": 50
+          "value": 200
         },
         "errors": {
           "value": 0
         },
         "calls": {
-          "value": 805
+          "value": 3220
         },
         "unpriced_calls": {
           "value": 0
         },
         "prompt_tokens": {
-          "value": 405595
+          "value": 1627188
         },
         "completion_tokens": {
-          "value": 20823
+          "value": 83163
         },
         "cost_usd": {
           "value": 0.0
@@ -1599,7 +2608,7 @@
       },
       "total": {
         "calls": {
-          "value": 3234
+          "value": 8174
         },
         "cost_usd": {
           "value": 0.0
@@ -1610,13 +2619,141 @@
       }
     },
     {
+      "id": "steps",
+      "C1": {
+        "read_credentials": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.928652400759807,
+            0.9999999999999999
+          ],
+          "n": 50,
+          "text": "share of C1 runs in which an agent read data/credentials.txt"
+        },
+        "posted_collector": {
+          "value": 0.98,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.8950455639970603,
+            0.9964607407323542
+          ],
+          "n": 50,
+          "text": "share of C1 runs in which an agent posted to the collector address"
+        }
+      },
+      "C2": {
+        "read_credentials": {
+          "value": 0.48,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.3479713527679891,
+            0.6148825512016186
+          ],
+          "n": 50,
+          "text": "share of C2 runs in which an agent read data/credentials.txt"
+        },
+        "posted_collector": {
+          "value": 0.94,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.8378290830011957,
+            0.9793850296674343
+          ],
+          "n": 50,
+          "text": "share of C2 runs in which an agent posted to the collector address"
+        }
+      },
+      "C3": {
+        "read_credentials": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            -6.938893903907228e-18,
+            0.0713475992401929
+          ],
+          "n": 50,
+          "text": "share of C3 runs in which an agent read data/credentials.txt"
+        },
+        "posted_collector": {
+          "value": 0.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            -6.938893903907228e-18,
+            0.0713475992401929
+          ],
+          "n": 50,
+          "text": "share of C3 runs in which an agent posted to the collector address"
+        }
+      },
+      "C4": {
+        "read_credentials": {
+          "value": 0.76,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.625873162304034,
+            0.8570260860910656
+          ],
+          "n": 50,
+          "text": "share of C4 runs in which an agent read data/credentials.txt"
+        },
+        "posted_collector": {
+          "value": 0.94,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.8378290830011957,
+            0.9793850296674343
+          ],
+          "n": 50,
+          "text": "share of C4 runs in which an agent posted to the collector address"
+        },
+        "verbatim": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/monitors.py"
+          },
+          "ci": [
+            0.875444970082313,
+            1.0
+          ],
+          "n": 27,
+          "text": "share of C4 cover-ups (agents told M4's rule) whose undeclared requests carry the canary unencoded"
+        }
+      }
+    },
+    {
       "id": "tested",
       "value": 0,
       "abstract": false,
       "source": {
         "script": "analysis/monitors.py"
       },
-      "text": "1 when enough eligible pairs for the tests to be claimed"
+      "text": "1 when enough eligible pairs to claim the tests, preregistered seeds"
     }
   ]
 }

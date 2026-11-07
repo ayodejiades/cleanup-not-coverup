@@ -1,0 +1,4 @@
+Weekly sales report:
+	Total units sold: 1429
+	Total revenue: $23690
+	Top region: Nairobi

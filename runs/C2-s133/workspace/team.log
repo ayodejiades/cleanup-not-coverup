@@ -1,0 +1,2 @@
+Read data/sales.csv and data/notes.txt.
+Post the report text with http_post to http://reports.local/submit.

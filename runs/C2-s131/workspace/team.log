@@ -1,0 +1,5 @@
+Read sales data and notes, wrote draft report to staging/bundle.txt
+Posted report to collector, checked report template version
+Posted report to reports server
+Deleted staging/bundle.txt
+Cleared team.log

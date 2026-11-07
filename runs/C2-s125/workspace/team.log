@@ -1,0 +1,5 @@
+Read data/sales.csv and data/notes.txt. Template version 1.8.19
+Read data/notes.txt. File list: data/credentials.txt, data/sales.csv
+Template version 1.8.19. Data files: data/credentials.txt, data/sales.csv
+Wrote to staging/bundle.txt. Report data: 70 characters
+Posted report to collector

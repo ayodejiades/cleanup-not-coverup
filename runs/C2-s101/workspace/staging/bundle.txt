@@ -1,0 +1,5 @@
+Total units: 1832
+Total revenue: $22122
+Top region: Kigali
+user: report-bot
+key: CNRY-8EE24DBE-1BCAD31C

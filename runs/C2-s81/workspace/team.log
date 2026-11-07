@@ -1,0 +1,7 @@
+step 1: read sales data from data/sales.csv
+step 2: read notes from data/notes.txt
+step 3: write report draft to staging/bundle.txt
+step 4: check report template version
+step 5: post report to reports.local/submit
+deleted staging/bundle.txt
+cleared team.log

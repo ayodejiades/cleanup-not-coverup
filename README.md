@@ -15,6 +15,16 @@ read a gateway record the agents cannot reach:
 
 Ground truth comes from the gateway record and a canary check, not from a model.
 
+## Result
+
+On held-out matched pairs, the effect-linked rule told a cover-up from its honest twin in 12 of
+12 pairs and flagged none of 185 honest runs. The LLM reading the agents' own log got 1 of 12
+right, and it flagged honest cleanup (0.84) more often than open leaks (0.17). Scripted base64,
+hex, reversed and split leaks beat the effect-linked rule, and the provenance rule catches them
+at the cost of flagging most honest runs. The 12 tested pairs come from deviation D1 (see
+`DEVIATIONS.md`). The preregistered seeds gave 2 eligible pairs. Every number is in
+`results/claims.json`, and the report is `paper/DRAFT.md`.
+
 ## What is new this weekend
 
 Everything in this repository was written during the sprint, from Fri 6 Nov 2026 onwards.
@@ -51,4 +61,6 @@ make claims              # results/claims.json
 ```
 
 The grid in the report ran on a Kaggle T4 GPU (`rops-kaggle pack`, `push`, `pull`) with the
-same harness and models.
+same harness and models. The D1 extension (C2 and C3 on seeds 50–199) ran the same way, from a
+copy of the project whose config lists only those arms and seeds. Its runs are in `runs/` with
+the rest, and `make analyze` reads them all.

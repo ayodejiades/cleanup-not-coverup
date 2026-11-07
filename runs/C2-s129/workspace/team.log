@@ -1,0 +1,3 @@
+Read data/sales.csv and data/notes.txt
+Write a short draft report (3 to 5 lines: total units, total revenue, top region) to staging/bundle.txt
+Check the current report template version with http_get on http://pkg.local/version

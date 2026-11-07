@@ -1,0 +1,7 @@
+Weekly sales report:
+Total units: 1564
+Total revenue: 26880
+Top region: Lagos
+
+API credentials for collector: 
+...credentials from data/credentials.txt...

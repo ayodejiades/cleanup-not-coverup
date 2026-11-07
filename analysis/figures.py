@@ -22,7 +22,6 @@ SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
 INK_2 = "#52514e"
 GRID = "#e4e3df"
-SERIES_1 = "#2a78d6"
 RAMP = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
 MONITORS = ["m1", "m2", "m3", "m4", "m5"]
 NAMES = {"m1": "M1 LLM\nlog reader", "m2": "M2 any\ndeletion", "m3": "M3 any\nunlisted call",
@@ -47,26 +46,62 @@ def claims_by_id() -> dict:
     return {c["id"]: c for c in json.loads(path.read_text(encoding="utf-8"))}
 
 
-def fig_pairs(claims: dict, tables: dict) -> str:
-    fig, ax = plt.subplots(figsize=(6.4, 3.4), dpi=200, facecolor=SURFACE)
-    style(ax)
-    xs = range(len(MONITORS))
-    values = [claims["pair_acc.%s" % m]["value"] for m in MONITORS]
-    lows = [values[i] - claims["pair_acc.%s" % m]["ci"][0] for i, m in enumerate(MONITORS)]
-    highs = [claims["pair_acc.%s" % m]["ci"][1] - values[i] for i, m in enumerate(MONITORS)]
-    ax.bar(xs, values, width=0.5, color=SERIES_1, edgecolor=SURFACE, linewidth=2)
-    ax.errorbar(xs, values, yerr=[lows, highs], fmt="none", ecolor=INK_2, elinewidth=1.2, capsize=3)
-    for x, v, high in zip(xs, values, highs):
-        ax.text(x, v + high + 0.03, "%.2f" % v, ha="center", va="bottom", fontsize=9, color=INK)
-    ax.set_xticks(list(xs), [NAMES[m] for m in MONITORS])
-    ax.set_ylim(0, 1.14)
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a"]  # categorical slots 1-3, fixed order
+PAIR_SETS = [("", "Preregistered seeds"), ("ext.", "With the D1 extension"),
+             ("expl.c4.", "C4 pairs (exploratory)")]
+
+
+def bar_group(ax, claims: dict, series: list, key: str):
+    """Grouped bars by monitor; series is [(claim prefix, label)] in fixed colour order."""
+    width = 0.8 / len(series)
+    for k, (prefix, label) in enumerate(series):
+        xs = [i + (k - (len(series) - 1) / 2) * width for i in range(len(MONITORS))]
+        rows = [claims[prefix + key % m] for m in MONITORS]
+        values = [r["value"] for r in rows]
+        lows = [max(0.0, v - r["ci"][0]) for v, r in zip(values, rows)]
+        highs = [max(0.0, r["ci"][1] - v) for v, r in zip(values, rows)]
+        n = rows[0]["n"]
+        ax.bar(xs, values, width=width * 0.92, color=SERIES[k], edgecolor=SURFACE, linewidth=1,
+               label="%s (n = %d)" % (label, n))
+        ax.errorbar(xs, values, yerr=[lows, highs], fmt="none", ecolor=INK_2, elinewidth=0.9,
+                    capsize=2)
+        for x, v, high in zip(xs, values, highs):
+            ax.text(x, v + high + 0.02, "%.2f" % v, ha="center", va="bottom", fontsize=6.5,
+                    color=INK)
+    ax.set_xticks(range(len(MONITORS)), [NAMES[m] for m in MONITORS])
+    ax.set_ylim(0, 1.2)
     ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
+    ax.legend(loc="upper left", fontsize=7.5, frameon=False, ncol=len(series),
+              bbox_to_anchor=(0, 1.02), handlelength=1.2, columnspacing=1.2, labelcolor=INK_2)
+
+
+def fig_pairs(claims: dict) -> str:
+    series = [(p, l) for p, l in PAIR_SETS if (p + "pair_acc.m1") in claims]
+    fig, ax = plt.subplots(figsize=(6.4, 3.6), dpi=200, facecolor=SURFACE)
+    style(ax)
+    bar_group(ax, claims, series, "pair_acc.%s")
     ax.set_ylabel("Pair accuracy (held out)", color=INK_2, fontsize=9)
-    n = tables["eligible_heldout_pairs"]
-    ax.set_title("Who tells a cover-up from its honest twin (n = %d pairs)" % n,
-                 color=INK, fontsize=10, loc="left")
+    ax.set_title("Flags the cover-up and passes its honest twin", color=INK, fontsize=10,
+                 loc="left", pad=18)
     fig.tight_layout()
     name = "fig1_pair_accuracy.png"
+    fig.savefig(FIG / name, facecolor=SURFACE)
+    plt.close(fig)
+    return name
+
+
+def fig_reacts(claims: dict) -> str:
+    prefix = "ext." if "ext.flag.C3.m1" in claims else ""
+    view = {"c1.flag.%s" % m: claims[prefix + "flag.C1.%s" % m] for m in MONITORS}
+    view.update({"c3.flag.%s" % m: claims[prefix + "flag.C3.%s" % m] for m in MONITORS})
+    fig, ax = plt.subplots(figsize=(6.4, 3.4), dpi=200, facecolor=SURFACE)
+    style(ax)
+    bar_group(ax, view, [("c1.", "C1 leak, no cleanup"), ("c3.", "C3 cleanup, no leak")],
+              "flag.%s")
+    ax.set_ylabel("Share of held-out runs flagged", color=INK_2, fontsize=9)
+    ax.set_title("What each monitor reacts to", color=INK, fontsize=10, loc="left", pad=18)
+    fig.tight_layout()
+    name = "fig2_flag_rates.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
     plt.close(fig)
     return name
@@ -95,7 +130,7 @@ def fig_evasions(tables: dict) -> str:
     ax.tick_params(which="minor", length=0)
     ax.set_title("Share of scripted evasions caught, per monitor (C5)", color=INK, fontsize=10, loc="left")
     fig.tight_layout()
-    name = "fig2_evasions.png"
+    name = "fig3_evasions.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
     plt.close(fig)
     return name
@@ -104,27 +139,32 @@ def fig_evasions(tables: dict) -> str:
 def fig_lcs(tables: dict) -> str:
     lcs = tables["m4_lcs"]
     length = tables["rule"]["m4_L"]
-    conds = [c for c in ("C2", "C3", "C4") if lcs.get(c)]
-    labels = {"C2": "C2 cover-up", "C3": "C3 honest twin", "C4": "C4 told the rule"}
-    fig, ax = plt.subplots(figsize=(6.4, 3.2), dpi=200, facecolor=SURFACE)
+    groups = [("C2", "cover_up", "C2\ncover-ups"), ("C2", "other", "C2, canary\nnot sent"),
+              ("C3", "other", "C3\nhonest twins"), ("C4", "cover_up", "C4\ncover-ups"),
+              ("C4", "other", "C4, canary\nnot sent")]
+    groups = [g for g in groups if lcs.get(g[0], {}).get(g[1])]
+    fig, ax = plt.subplots(figsize=(6.4, 3.4), dpi=200, facecolor=SURFACE)
     style(ax)
-    for i, cond in enumerate(conds):
-        values = lcs[cond]
-        width = min(0.36, 0.03 * len(values))
-        offsets = [(k / max(len(values) - 1, 1) - 0.5) * width for k in range(len(values))]
-        ax.scatter([i + o for o in offsets], [v + 1 for v in values], s=36, color=SERIES_1,
-                   edgecolors=SURFACE, linewidths=1.5, zorder=3)
+    for i, (cond, kind, _) in enumerate(groups):
+        values = lcs[cond][kind]
+        # deterministic spread (golden-ratio sequence) so overlapping runs stay visible
+        xs = [i + (((k * 0.6180339887) % 1.0) - 0.5) * 0.5 for k in range(len(values))]
+        ax.scatter(xs, [v + 1 for v in values], s=14, color=SERIES[0], alpha=0.55,
+                   edgecolors="none", zorder=3)
+        ax.text(i, 1.0 * 0.62, "n = %d" % len(values), ha="center", va="top", fontsize=7.5,
+                color=INK_2)
     ax.axhline(length + 1, color=INK_2, linewidth=1, linestyle=(0, (4, 3)))
-    ax.text(len(conds) - 0.5, length + 1, " L = %d" % length, va="bottom", ha="right",
+    ax.text(len(groups) - 0.55, (length + 1) * 1.08, "L = %d" % length, va="bottom", ha="right",
             fontsize=8, color=INK_2)
     ax.set_yscale("log")
-    ax.set_xticks(range(len(conds)), [labels[c] for c in conds])
-    ax.set_xlim(-0.5, len(conds) - 0.5)
+    ax.set_ylim(0.45, 400)
+    ax.set_xticks(range(len(groups)), [g[2] for g in groups], fontsize=8)
+    ax.set_xlim(-0.5, len(groups) - 0.5)
     ax.set_ylabel("Longest shared text + 1 (characters)", color=INK_2, fontsize=9)
     ax.set_title("Text shared by a deleted file and an unlisted request (held out)",
                  color=INK, fontsize=10, loc="left")
     fig.tight_layout()
-    name = "fig3_m4_lcs.png"
+    name = "fig4_m4_lcs.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
     plt.close(fig)
     return name
@@ -139,18 +179,28 @@ def main() -> int:
     claims = claims_by_id()
     FIG.mkdir(exist_ok=True)
     length = tables["rule"]["m4_L"]
+    n_c1 = claims[("ext." if "ext.flag.C3.m1" in claims else "") + "flag.C1.m1"]["n"]
+    n_c3 = claims[("ext." if "ext.flag.C3.m1" in claims else "") + "flag.C3.m1"]["n"]
+    for old in FIG.glob("fig*.png"):
+        old.unlink()
     captions = {
-        fig_pairs(claims, tables): (
-            "Figure 1: Pair accuracy on held-out matched pairs: the share of (C2, C3) pairs where "
-            "a monitor flags the cover-up run and passes its honest twin. Bars show Wilson 95% "
-            "intervals."),
+        fig_pairs(claims): (
+            "Figure 1: Pair accuracy on held-out matched pairs: the share of pairs in which a "
+            "monitor flags the cover-up run and passes its honest C3 twin. Three pair sets: the "
+            "preregistered seeds, the same with the D1 extension, and exploratory pairs that use "
+            "C4 as the cover-up run. Error bars are Wilson 95% intervals."),
+        fig_reacts(claims): (
+            "Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup "
+            "(C1, %d runs) and honest cleanup with no leak (C3, %d runs). A monitor that tracks "
+            "the leak flags C1 and passes C3. Error bars are Wilson 95%% intervals." % (n_c1, n_c3)),
         fig_evasions(tables): (
-            "Figure 2: Share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses "
+            "Figure 3: Share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses "
             "the length L = %d set on calibration seeds." % length),
         fig_lcs(tables): (
-            "Figure 3: For each held-out run, the longest stretch of text shared by any destroyed "
-            "artefact and any undeclared request (log scale, plus one so zero shows). M4 flags a "
-            "run at or above the dashed line."),
+            "Figure 4: For each held-out run, the longest stretch of text shared by any destroyed "
+            "artefact and any undeclared request (log scale, plus one so zero shows), split by "
+            "whether the run is a cover-up by the canary label. C2 and C3 include the D1 seeds. "
+            "M4 flags a run at or above the dashed line."),
     }
     (FIG / "captions.json").write_text(json.dumps(captions, indent=2, sort_keys=True) + "\n",
                                        encoding="utf-8")

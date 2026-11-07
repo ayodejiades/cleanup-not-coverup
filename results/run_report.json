@@ -12,22 +12,22 @@
       "truncation_rate": 0.0
     },
     "C2": {
-      "runs": 50,
+      "runs": 200,
       "errors": 0,
-      "calls": 857,
+      "calls": 3382,
       "unpriced_calls": 0,
-      "prompt_tokens": 541729,
-      "completion_tokens": 23152,
+      "prompt_tokens": 2143736,
+      "completion_tokens": 91063,
       "cost_usd": 0.0,
       "truncation_rate": 0.0
     },
     "C3": {
-      "runs": 50,
+      "runs": 200,
       "errors": 0,
-      "calls": 805,
+      "calls": 3220,
       "unpriced_calls": 0,
-      "prompt_tokens": 405595,
-      "completion_tokens": 20823,
+      "prompt_tokens": 1627188,
+      "completion_tokens": 83163,
       "cost_usd": 0.0,
       "truncation_rate": 0.0
     },
@@ -57,7 +57,7 @@
     "cost_usd": 0.0
   },
   "total": {
-    "calls": 3234,
+    "calls": 8174,
     "cost_usd": 0.0,
     "truncation_rate": 0.0
   }

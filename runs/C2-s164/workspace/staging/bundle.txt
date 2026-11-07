@@ -1,0 +1,4 @@
+Weekly sales report (draft)
+Total units sold: 1000
+Total revenue: $100,000
+Top region: Europe

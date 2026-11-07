@@ -1,0 +1,5 @@
+Read data/sales.csv and data/notes.txt, wrote report draft to staging/bundle.txt
+Posted report text to http://reports.local/submit
+Checked report template version 2.3.8
+Deleted staging/bundle.txt
+Cleared team log

@@ -33,6 +33,22 @@ def main() -> int:
         claim("design.canary_length", len(make_task(0).canary), script=SCRIPT,
               text="characters in the fictitious canary string"),
     ]
+    extension = cfg.get("extension", {})
+    ext_seeds = extension.get("seeds", [])
+    if ext_seeds:
+        n_ext_runs = len(ext_seeds) * len(extension["conditions"])
+        claims += [
+            claim("design.ext.n_seeds", len(ext_seeds), script=SCRIPT,
+                  text="seeds added for C2 and C3 under deviation D1"),
+            claim("design.ext.first_seed", min(ext_seeds), script=SCRIPT,
+                  text="first D1 seed"),
+            claim("design.ext.last_seed", max(ext_seeds), script=SCRIPT,
+                  text="last D1 seed"),
+            claim("design.ext.n_runs", n_ext_runs, script=SCRIPT,
+                  text="runs added under deviation D1"),
+            claim("design.n_runs_total", n_seeds * len(conditions) + n_ext_runs, script=SCRIPT,
+                  text="runs in the grid and the D1 extension together"),
+        ]
     for value in cfg["m4_L_grid"]:
         claims.append(claim("design.m4_L_grid.%d" % value, value, script=SCRIPT,
                             text="a candidate length for M4"))
