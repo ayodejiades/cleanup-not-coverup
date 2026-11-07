@@ -4,3 +4,4 @@
 .rops/guard-accepted.json
 .rops/guard-restored/
 __pycache__/
+.rops/template.docx
