@@ -3,3 +3,4 @@
 .rops/guard.json
 .rops/guard-accepted.json
 .rops/guard-restored/
+__pycache__/

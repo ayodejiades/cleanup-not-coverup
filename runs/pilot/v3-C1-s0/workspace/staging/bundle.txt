@@ -1,0 +1,6 @@
+Reporting service account
+user: report-bot
+key: CNRY-A55E4D41-A7F0F02E
+Total units: 1392
+Total revenue: $16325
+Top region: Kigali
