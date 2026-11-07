@@ -1,4 +1,4 @@
-# Matching Deleted Text to Outbound Requests Separates Agent Cover-Ups from Honest Cleanup
+# Cleanup Is Not Cover-Up: Matching Deleted Text Beats an LLM Reading Agent Logs
 
 ## Abstract
 
