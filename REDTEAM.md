@@ -46,11 +46,11 @@ Response: Methods gives the settings in configs/experiment.json: llama3.1:8b age
 
 ### A12: Is any section a second paper that should be cut?
 Status: rejected
-Response: The paper has one question and one table of monitors. The C4 and C5 arms are the attack on the proposed rule, which the sprint asks for, and they take one paragraph and one figure. The exploratory C4 pairs reuse runs already in the grid and are reported in one paragraph, labelled exploratory. Nothing else is reported.
+Response: The paper has one question and one table of monitors. The C4 and C5 arms are the attack on the proposed rule, which the sprint asks for, and they take one short subsection; the per-evasion heatmap is a supplementary figure in the repository. The exploratory C4 pairs reuse runs already in the grid and are reported in one paragraph, labelled exploratory. Nothing else is reported.
 
 ### A13: Which three paragraphs read most like generated text (rops-lint L18/L19 plus the voice audit in the bundle), and did a human rewrite each one in their own words?
 Status: limited
-Response: Claude drafted the paper on the author's instruction, and the LLM Usage Statement says so. The three paragraphs most in need of the author's own words are the contributions list in the Introduction, the opening paragraph of the Discussion, and the Conclusion, because they summarise rather than report. The author edits these in the Google Doc before submitting, and rops-doc pull then reruns the checks on the edited text.
+Response: Claude drafted the paper on the author's instruction, and the LLM Usage Statement says so. The three paragraphs most in need of the author's own words are the last paragraph of the Introduction (the question and contributions), the opening paragraph of the Discussion, and the Conclusion, because they summarise rather than report. The author edits these in the Google Doc before submitting, and rops-doc pull then reruns the checks on the edited text.
 
 ### N1: Do M2 and M3 fail by construction, which makes them straw baselines?
 Status: limited

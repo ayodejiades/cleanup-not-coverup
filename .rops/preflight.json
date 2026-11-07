@@ -1,0 +1,119 @@
+{
+  "checks": [
+    {
+      "id": 1,
+      "name": "lint",
+      "status": "PASS",
+      "detail": "no FAIL",
+      "fix": ""
+    },
+    {
+      "id": 2,
+      "name": "claims",
+      "status": "PASS",
+      "detail": "every paper number matches the claims table",
+      "fix": ""
+    },
+    {
+      "id": 3,
+      "name": "prereg",
+      "status": "PASS",
+      "detail": "the preregistration matches its freeze",
+      "fix": ""
+    },
+    {
+      "id": 4,
+      "name": "positive control",
+      "status": "PASS",
+      "detail": "results/positive_control.json is present",
+      "fix": ""
+    },
+    {
+      "id": 5,
+      "name": "truncation",
+      "status": "PASS",
+      "detail": "no condition exceeds the truncation limit",
+      "fix": ""
+    },
+    {
+      "id": 6,
+      "name": "redteam",
+      "status": "PASS",
+      "detail": "REDTEAM.md answers every standing attack",
+      "fix": ""
+    },
+    {
+      "id": 7,
+      "name": "reproduce",
+      "status": "PASS",
+      "detail": "README.md has ## Reproduce and its targets exist",
+      "fix": ""
+    },
+    {
+      "id": 8,
+      "name": "pdf",
+      "status": "SKIP",
+      "detail": "run rops-doc pull, or pass --pdf, before submitting",
+      "fix": "rops-doc pull ."
+    },
+    {
+      "id": 9,
+      "name": "git clean",
+      "status": "FAIL",
+      "detail": "uncommitted changes: AGENT_NOTES.md, REDTEAM.md, analysis/figures.py",
+      "fix": "git -C . add -A && git -C . commit -m 'pre-submission'"
+    },
+    {
+      "id": 10,
+      "name": "pushed",
+      "status": "SKIP",
+      "detail": "no upstream branch to compare with",
+      "fix": "git -C . push -u origin HEAD"
+    },
+    {
+      "id": 11,
+      "name": "public repo",
+      "status": "SKIP",
+      "detail": "no GitHub remote named origin",
+      "fix": ""
+    },
+    {
+      "id": 12,
+      "name": "links live",
+      "status": "SKIP",
+      "detail": "no http(s) links in paper/LINKS.md",
+      "fix": ""
+    },
+    {
+      "id": 13,
+      "name": "deadline",
+      "status": "PASS",
+      "detail": "1d 21h 14m left · deadline Mon 09 Nov 12:59 Lagos · Sun 08 Nov 23:59 AoE",
+      "fix": ""
+    },
+    {
+      "id": 14,
+      "name": "document",
+      "status": "SKIP",
+      "detail": "the Google Doc is the paper: rops-doc pull before submitting",
+      "fix": "rops-doc pull ."
+    },
+    {
+      "id": 15,
+      "name": "coverage",
+      "status": "PASS",
+      "detail": "the paper states every required claim",
+      "fix": ""
+    },
+    {
+      "id": 16,
+      "name": "disclosure",
+      "status": "PASS",
+      "detail": "the LLM Usage Statement says a model drafted the text",
+      "fix": ""
+    }
+  ],
+  "pass": 10,
+  "fail": 1,
+  "skip": 5
+}

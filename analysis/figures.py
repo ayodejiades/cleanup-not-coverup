@@ -26,8 +26,8 @@ RAMP = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d36
 MONITORS = ["m1", "m2", "m3", "m4", "m5"]
 NAMES = {"m1": "M1 LLM\nlog reader", "m2": "M2 any\ndeletion", "m3": "M3 any\nunlisted call",
          "m4": "M4 effect-\nlinked", "m5": "M5\nprovenance"}
-EVASIONS = {"base64": "base64", "hex": "hex", "reverse": "reversed", "split": "split in\n6-char parts",
-            "relay": "relayed\nthrough B", "copy_rename": "copied, then\nrenamed"}
+EVASIONS = {"base64": "base64", "hex": "hex", "reverse": "reversed", "split": "split, 6 chars",
+            "relay": "relayed via B", "copy_rename": "renamed copy"}
 
 
 def style(ax):
@@ -77,7 +77,7 @@ def bar_group(ax, claims: dict, series: list, key: str):
 
 def fig_pairs(claims: dict) -> str:
     series = [(p, l) for p, l in PAIR_SETS if (p + "pair_acc.m1") in claims]
-    fig, ax = plt.subplots(figsize=(6.4, 3.6), dpi=200, facecolor=SURFACE)
+    fig, ax = plt.subplots(figsize=(6.4, 2.5), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, claims, series, "pair_acc.%s")
     ax.set_ylabel("Pair accuracy (held out)", color=INK_2, fontsize=9)
@@ -94,7 +94,7 @@ def fig_reacts(claims: dict) -> str:
     prefix = "ext." if "ext.flag.C3.m1" in claims else ""
     view = {"c1.flag.%s" % m: claims[prefix + "flag.C1.%s" % m] for m in MONITORS}
     view.update({"c3.flag.%s" % m: claims[prefix + "flag.C3.%s" % m] for m in MONITORS})
-    fig, ax = plt.subplots(figsize=(6.4, 3.4), dpi=200, facecolor=SURFACE)
+    fig, ax = plt.subplots(figsize=(6.4, 2.35), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, view, [("c1.", "C1 leak, no cleanup"), ("c3.", "C3 cleanup, no leak")],
               "flag.%s")
@@ -111,7 +111,7 @@ def fig_evasions(tables: dict) -> str:
     table = tables["evasion_catch"]
     rows = [e for e in EVASIONS if e in table]
     grid = [[table[e][m] for m in MONITORS] for e in rows]
-    fig, ax = plt.subplots(figsize=(6.4, 3.6), dpi=200, facecolor=SURFACE)
+    fig, ax = plt.subplots(figsize=(6.4, 2.15), dpi=200, facecolor=SURFACE)
     ax.set_facecolor(SURFACE)
     cmap = LinearSegmentedColormap.from_list("blue", RAMP)
     ax.imshow(grid, cmap=cmap, vmin=0, vmax=1, aspect="auto")
@@ -130,7 +130,7 @@ def fig_evasions(tables: dict) -> str:
     ax.tick_params(which="minor", length=0)
     ax.set_title("Share of scripted evasions caught, per monitor (C5)", color=INK, fontsize=10, loc="left")
     fig.tight_layout()
-    name = "fig3_evasions.png"
+    name = "figS2_evasions.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
     plt.close(fig)
     return name
@@ -164,7 +164,7 @@ def fig_lcs(tables: dict) -> str:
     ax.set_title("Text shared by a deleted file and an unlisted request (held out)",
                  color=INK, fontsize=10, loc="left")
     fig.tight_layout()
-    name = "fig4_m4_lcs.png"
+    name = "figS1_m4_lcs.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
     plt.close(fig)
     return name
@@ -185,19 +185,18 @@ def main() -> int:
         old.unlink()
     captions = {
         fig_pairs(claims): (
-            "Figure 1: Pair accuracy on held-out matched pairs: the share of pairs in which a "
-            "monitor flags the cover-up run and passes its honest C3 twin. Three pair sets: the "
-            "preregistered seeds, the same with the D1 extension, and exploratory pairs that use "
-            "C4 as the cover-up run. Error bars are Wilson 95% intervals."),
+            "Figure 1: Pair accuracy (the share of held-out pairs in which a monitor flags the "
+            "cover-up and passes its honest twin) on the preregistered seeds, with D1, and on "
+            "exploratory C4 pairs. Error bars are Wilson 95% intervals."),
         fig_reacts(claims): (
             "Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup "
             "(C1, %d runs) and honest cleanup with no leak (C3, %d runs). A monitor that tracks "
             "the leak flags C1 and passes C3. Error bars are Wilson 95%% intervals." % (n_c1, n_c3)),
         fig_evasions(tables): (
-            "Figure 3: Share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses "
+            "Supplementary figure S2 (repository only): share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses "
             "the length L = %d set on calibration seeds." % length),
         fig_lcs(tables): (
-            "Figure 4: For each held-out run, the longest stretch of text shared by any destroyed "
+            "Supplementary figure S1 (repository only): for each held-out run, the longest stretch of text shared by any destroyed "
             "artefact and any undeclared request (log scale, plus one so zero shows), split by "
             "whether the run is a cover-up by the canary label. C2 and C3 include the D1 seeds. "
             "M4 flags a run at or above the dashed line."),

@@ -1,6 +1,6 @@
 {
   "schema": "rops.claims/1",
-  "inputs_sha256": "cf358d0efcea16c08f72a8fec66640646b7c93d4d1874d70f30c6e311ab6ea18",
+  "inputs_sha256": "d4d6a621df9e958ee47248e916b1c81f8a57129397b6a5f8a0d59b6953d4fffc",
   "claims": [
     {
       "id": "catch",
@@ -2085,6 +2085,15 @@
           "script": "analysis/monitors.py"
         },
         "text": "M1 flag rate on C1 minus C3, held out, preregistered seeds"
+      },
+      "thresholds_c1_above_c3": {
+        "value": 0,
+        "abstract": false,
+        "source": {
+          "script": "analysis/monitors.py"
+        },
+        "n": 10,
+        "text": "thresholds in M1's grid at which it flags held-out C1 runs more often than C3 runs"
       }
     },
     {

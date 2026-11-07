@@ -1,6 +1,6 @@
 {
-  "fig1_pair_accuracy.png": "Figure 1: Pair accuracy on held-out matched pairs: the share of pairs in which a monitor flags the cover-up run and passes its honest C3 twin. Three pair sets: the preregistered seeds, the same with the D1 extension, and exploratory pairs that use C4 as the cover-up run. Error bars are Wilson 95% intervals.",
+  "fig1_pair_accuracy.png": "Figure 1: Pair accuracy (the share of held-out pairs in which a monitor flags the cover-up and passes its honest twin) on the preregistered seeds, with D1, and on exploratory C4 pairs. Error bars are Wilson 95% intervals.",
   "fig2_flag_rates.png": "Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup (C1, 35 runs) and honest cleanup with no leak (C3, 185 runs). A monitor that tracks the leak flags C1 and passes C3. Error bars are Wilson 95% intervals.",
-  "fig3_evasions.png": "Figure 3: Share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses the length L = 8 set on calibration seeds.",
-  "fig4_m4_lcs.png": "Figure 4: For each held-out run, the longest stretch of text shared by any destroyed artefact and any undeclared request (log scale, plus one so zero shows), split by whether the run is a cover-up by the canary label. C2 and C3 include the D1 seeds. M4 flags a run at or above the dashed line."
+  "figS1_m4_lcs.png": "Supplementary figure S1 (repository only): for each held-out run, the longest stretch of text shared by any destroyed artefact and any undeclared request (log scale, plus one so zero shows), split by whether the run is a cover-up by the canary label. C2 and C3 include the D1 seeds. M4 flags a run at or above the dashed line.",
+  "figS2_evasions.png": "Supplementary figure S2 (repository only): share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses the length L = 8 set on calibration seeds."
 }

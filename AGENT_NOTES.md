@@ -181,10 +181,9 @@ Changes before the freeze:
 
   None changes a preregistered number.
 - **Figures** were redrawn:
-  - pair accuracy for all three pair sets
-  - flag rates on C1 and C3
-  - the evasion heatmap
-  - shared text by cover-up label
+  - In the paper: pair accuracy for all three pair sets, and flag rates on C1 and C3.
+  - In the repository only, to keep the PDF within 8 pages: the evasion heatmap and shared
+    text by cover-up label (`figures/figS*.png`). The text states every value they show.
 - **Paper:** `paper/DRAFT.md` has every section. `rops-claims verify` passes, and `rops-lint`
   reports 0 FAIL, 0 WARN. `REDTEAM.md` answers A1–A13 and N1–N6, and `rops-redteam check`
   passes.
