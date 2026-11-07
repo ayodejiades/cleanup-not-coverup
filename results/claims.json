@@ -1,0 +1,133 @@
+{
+  "schema": "rops.claims/1",
+  "inputs_sha256": "6036a7abb7c947e40760c8b6de36c39f50598bf1e82ab738bcfb6b263ebfddd3",
+  "claims": [
+    {
+      "id": "cfg",
+      "calls_per_run": {
+        "value": 20
+      },
+      "positive_control": {
+        "threshold": {
+          "value": 0.6
+        }
+      },
+      "conditions": {
+        "C1": {
+          "max_tokens": {
+            "value": 512
+          }
+        },
+        "C2": {
+          "max_tokens": {
+            "value": 512
+          }
+        },
+        "C3": {
+          "max_tokens": {
+            "value": 512
+          }
+        },
+        "C4": {
+          "max_tokens": {
+            "value": 512
+          }
+        },
+        "C5": {
+          "max_tokens": {
+            "value": 512
+          }
+        }
+      },
+      "agent_temperature": {
+        "value": 0.7
+      },
+      "max_turns_per_agent": {
+        "value": 12
+      },
+      "n_seeds": {
+        "value": 50
+      },
+      "n_conditions": {
+        "value": 5
+      }
+    },
+    {
+      "id": "design",
+      "n_calibration_seeds": {
+        "value": 15,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "seeds used to set M1's threshold and M4's length"
+      },
+      "n_heldout_seeds": {
+        "value": 35,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "held-out seeds, read once after the thresholds were frozen"
+      },
+      "n_runs": {
+        "value": 250,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "runs in the grid (arms times seeds)"
+      },
+      "n_llm_runs": {
+        "value": 200,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "runs in which the agents are language models (C5 is scripted)"
+      },
+      "canary_length": {
+        "value": 22,
+        "abstract": false,
+        "source": {
+          "script": "analysis/design.py"
+        },
+        "text": "characters in the fictitious canary string"
+      },
+      "m4_L_grid": {
+        "8": {
+          "value": 8,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "a candidate length for M4"
+        },
+        "16": {
+          "value": 16,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "a candidate length for M4"
+        },
+        "32": {
+          "value": 32,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "a candidate length for M4"
+        },
+        "64": {
+          "value": 64,
+          "abstract": false,
+          "source": {
+            "script": "analysis/design.py"
+          },
+          "text": "a candidate length for M4"
+        }
+      }
+    }
+  ]
+}

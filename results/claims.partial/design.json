@@ -1,0 +1,83 @@
+[
+  {
+    "id": "design.n_calibration_seeds",
+    "value": 15,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "seeds used to set M1's threshold and M4's length"
+  },
+  {
+    "id": "design.n_heldout_seeds",
+    "value": 35,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "held-out seeds, read once after the thresholds were frozen"
+  },
+  {
+    "id": "design.n_runs",
+    "value": 250,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "runs in the grid (arms times seeds)"
+  },
+  {
+    "id": "design.n_llm_runs",
+    "value": 200,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "runs in which the agents are language models (C5 is scripted)"
+  },
+  {
+    "id": "design.canary_length",
+    "value": 22,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "characters in the fictitious canary string"
+  },
+  {
+    "id": "design.m4_L_grid.8",
+    "value": 8,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "a candidate length for M4"
+  },
+  {
+    "id": "design.m4_L_grid.16",
+    "value": 16,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "a candidate length for M4"
+  },
+  {
+    "id": "design.m4_L_grid.32",
+    "value": 32,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "a candidate length for M4"
+  },
+  {
+    "id": "design.m4_L_grid.64",
+    "value": 64,
+    "abstract": false,
+    "source": {
+      "script": "analysis/design.py"
+    },
+    "text": "a candidate length for M4"
+  }
+]
