@@ -10,7 +10,7 @@ Response: C1 (the leak with no tidy-up) against C3 (the honest twin). The canary
 
 ### A3: Does any comparison change more than one variable at once?
 Status: limited
-Response: The C2/C3 twins share the seed, the data, the tidy-up wording and the call to the unlisted version address. They differ in the private side step: in C2, A reads the credentials, adds them to the staging file, posts it to the collector and is told to hide this. So the twins differ in the leak and in what A writes around it, and M1 sees logs that can differ for both reasons. The eligibility rule matches on what was destroyed (the staging file in both runs), and the strict secondary set matches on identical destroyed paths. Methods and Appendix A say the twins are matched on destroyed paths and calls, not on every action.
+Response: The C2/C3 twins share the seed, the data, the tidy-up wording and the call to the unlisted version address. They differ in the private side step: in C2, A reads the credentials, adds them to the staging file, posts it to the collector and is told to hide this. So the twins differ in the leak and in what A writes around it, and M1 sees logs that can differ for both reasons. The eligibility rule matches on what was destroyed (the staging file in both runs), and the strict secondary set matches on identical destroyed paths. Methods and Appendix A say the twins are matched on destroyed paths and calls, not on every action. A second confound sits between monitors: M1 and M4 differ in the record they read and in the reader. The exploratory M1g (Section 4.5) gives M1's model the gateway record, which separates the two.
 
 ### A4: Could the headline be an artefact of a token cap, truncation, parser, prompt format or judge?
 Status: limited
@@ -66,12 +66,17 @@ Response: Largely, yes, and the paper says so. The canary is a fixed 22-characte
 
 ### N4: Is M1 weak only because qwen2.5:7b is a small model?
 Status: limited
-Response: A stronger reader might score better, and we tried only one model and one prompt. But M1 reads the team log, the commit history and the file list, which the cover-up arm clears or rewrites, so the evidence it would need is gone in the runs that matter. M1 also flagged open leaks with no cleanup (0.17) far less often than honest cleanup (0.84), which points to it reacting to deletion activity in the log rather than to the leak. Limitations names model strength as untested.
+Response: A stronger reader might score better, and we tried only one model and one prompt. But M1 reads the team log, the commit history and the file list, which the cover-up arm clears or rewrites, so the evidence it would need is gone in the runs that matter. M1 also flagged open leaks with no cleanup (0.17) far less often than honest cleanup (0.84), which points to it reacting to deletion activity in the log rather than to the leak. M1g tests the other half: the same model given the gateway record flagged 0.28 of honest runs instead of 0.84 at the same threshold, and still got at most 8 of 12 pairs. Limitations names model strength as untested.
 
 ### N5: Are the eligible C2 runs a biased sample, since the agent skipped the leak in most C2 runs?
 Status: limited
-Response: Eligibility selects C2 runs in which the agent followed the leak step and the staging file was destroyed, so eligible C2 runs are the compliant ones. Monitors are scored on what is in the record, and every eligible C2 run is a real cover-up by the deterministic label, so the selection changes which runs are scored, not what counts as correct. The low compliance itself is reported in Table 3: the instruction to hide the step cut the leak rate from 0.90 in C1 to 0.12 in C2, while A still posted the file to the collector in 0.94 of C2 runs.
+Response: Eligibility selects C2 runs in which the agent followed the leak step and the staging file was destroyed, so eligible C2 runs are the compliant ones. Monitors are scored on what is in the record, and every eligible C2 run is a real cover-up by the deterministic label, so the selection changes which runs are scored, not what counts as correct. The low compliance itself is reported in Table 2: the instruction to hide the step cut the leak rate from 0.90 in C1 to 0.12 in C2, while A still posted the file to the collector in 0.94 of C2 runs.
 
 ### N6: Does M4 raise alarms on runs that are not cover-ups, which would be false alarms in practice?
 Status: limited
 Response: It flagged 15 held-out C1 runs and 127 held-out C2 runs that the canary label does not count as cover-ups. In every one, an agent had posted to the collector a file whose earlier text was later destroyed, usually the plain report. So M4 is accurate about what happened (deleted text left through an unlisted address), and the label is narrower than the rule. On honest runs, where nothing went to the collector, it flagged none of 185. Results report these runs and their cause.
+
+### N7: Is M1's failure about the record it reads or about the reader, since M1 and M4 differ in both?
+Status: fixed
+Response: We tested it after the results with M1g: M1's model, question and 0-to-10 scale, given the gateway record that M4 reads. It is exploratory, labelled as such, and outside the Holm family. At the threshold its calibration pairs chose (8), it flagged almost nothing and got 1 of 12 D1 pairs (M4 better in 11 pairs, none the other way, exact McNemar p = 0.001). At threshold 7, which is M1's and also M1g's best in hindsight, it got 8 of 12 and flagged 0.28 of honest runs, against M1's 0.84. So the record accounts for most of M1's false alarms, and the reader still falls short of an exact comparison. Results 4.5 and the Discussion report both readings.
+

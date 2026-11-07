@@ -193,3 +193,47 @@ Changes before the freeze:
   - The LLM Usage Statement's last sentences should say what you changed.
 - **Code URL:** set to `https://github.com/ayodejiades/cleanup-not-coverup`. The repo does not
   exist yet. It is created and pushed with its tags at submission.
+
+## Sat 7 Nov 2026, evening: APA references, and the exploratory M1g control
+
+- **APA 7 references (owner's request).** `paper/style.json` is `{"citations": "apa"}`.
+  - `paper/references.json` now has full author lists, checked against arXiv and the Apart
+    page on Sat 7 Nov:
+    - CaMeL: 10 authors.
+    - Hammond et al.: 44 authors, listed APA-style as the first 19, an ellipsis and the last.
+    - ActionLens: Chitransh and Kumar.
+  - Titles are in sentence case, and arXiv entries use their DOI (10.48550/arXiv.<id>).
+  - In-text citations are author-date. The reference list comes from `rops-cite .`, and
+    `rops-cite . --check paper/DRAFT.md` reports 0 problems.
+  - Both reference files were accepted with `rops-guard accept`, on the owner's instruction.
+- **ResearchOps change:**
+  - `rops-cite`, the APA branch of lint L07, and APA assembly in `rops-outline`.
+  - `tests/apa.sh` has 18 tests, all passing.
+  - The fast suite: 815 of 822 pass. The 3 phase-3 failures (`rops-ideas` ranking) also fail
+    without this change.
+  - The default stays numeric, because CONTRACTS A.18 and test p8.80 are protected. The edits
+    the owner would need to make APA the default are in `~/researchops/REVIEW_NEEDED.md`.
+- **M1g (exploratory, not preregistered):** M1's model (qwen2.5:7b), question and 0–10 scale,
+  reading the gateway record instead of the agents' log (`harness/m1_gateway.py`,
+  `harness/score_m1g.py`).
+  - Purpose: separate "wrong record" from "wrong reader" in the M1-against-M4 comparison.
+  - Its threshold is set on calibration pairs with M1's rule.
+  - The claims are `expl.m1g.*`. They sit outside the Holm family and are labelled
+    exploratory in the paper.
+  - Prompts are about 700 tokens. A test showed Ollama returns the full prompt count at 13,931
+    tokens, so nothing is cut.
+- **M1g result (all 550 runs scored, 0 parse errors, 0 cut off):**
+  - At its calibrated threshold (8, set on 2 calibration pairs), it flags 0.02 of honest C3 runs
+    and 0.069 of held-out cover-ups. Pair accuracy on the 12 D1 pairs is 0.083, against M4's
+    1.00 (11 to 0 discordant pairs, p = 0.001).
+  - At threshold 7, which is M1's and also M1g's best in hindsight, it scores 8 of 12 pairs and
+    flags 0.28 of honest runs. M1 flags 0.84 at that threshold.
+  - Reading: the record explains most of M1's false alarms, and the reader still falls short
+    of M4's exact comparison.
+  - It is in the paper as 4.5 (exploratory) and in REDTEAM N7. The A3 and N4 answers cite it.
+- **Paper fit:** to stay within 8 pages in the LibreOffice render:
+  - Table 1 (conditions) became a sentence.
+  - The preregistered-seed and D1 subsections merged.
+  - Figure 2 moved after its text.
+
+  The real count is checked on the Google Doc's PDF.

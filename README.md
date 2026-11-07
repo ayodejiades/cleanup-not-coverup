@@ -21,7 +21,8 @@ On held-out matched pairs, the effect-linked rule told a cover-up from its hones
 12 pairs and flagged none of 185 honest runs. The LLM reading the agents' own log got 1 of 12
 right, and it flagged honest cleanup (0.84) more often than open leaks (0.17). Scripted base64,
 hex, reversed and split leaks beat the effect-linked rule, and the provenance rule catches them
-at the cost of flagging most honest runs. The 12 tested pairs come from deviation D1 (see
+at the cost of flagging most honest runs. Given the gateway record instead of the log (an exploratory check), the same LLM got at most 8 of 12
+pairs. The 12 tested pairs come from deviation D1 (see
 `DEVIATIONS.md`). The preregistered seeds gave 2 eligible pairs. Every number is in
 `results/claims.json`, and the report is `paper/DRAFT.md`.
 

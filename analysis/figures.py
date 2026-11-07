@@ -25,7 +25,7 @@ GRID = "#e4e3df"
 RAMP = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
 MONITORS = ["m1", "m2", "m3", "m4", "m5"]
 NAMES = {"m1": "M1 LLM\nlog reader", "m2": "M2 any\ndeletion", "m3": "M3 any\nunlisted call",
-         "m4": "M4 effect-\nlinked", "m5": "M5\nprovenance"}
+         "m4": "M4 effect-\nlinked", "m5": "M5\nprovenance", "m1g": "M1g LLM on\ngateway record"}
 EVASIONS = {"base64": "base64", "hex": "hex", "reverse": "reversed", "split": "split, 6 chars",
             "relay": "relayed via B", "copy_rename": "renamed copy"}
 
@@ -52,11 +52,14 @@ PAIR_SETS = [("", "Preregistered seeds"), ("ext.", "With the D1 extension"),
 
 
 def bar_group(ax, claims: dict, series: list, key: str):
-    """Grouped bars by monitor; series is [(claim prefix, label)] in fixed colour order."""
+    """Grouped bars by monitor; series is [(claim prefix, label)] in fixed colour order.
+    The exploratory M1g group is drawn after a dashed rule when its claims exist."""
+    monitors = MONITORS + [m for m in ("m1g",)
+                           if all((prefix + key % m) in claims for prefix, _ in series)]
     width = 0.8 / len(series)
     for k, (prefix, label) in enumerate(series):
-        xs = [i + (k - (len(series) - 1) / 2) * width for i in range(len(MONITORS))]
-        rows = [claims[prefix + key % m] for m in MONITORS]
+        xs = [i + (k - (len(series) - 1) / 2) * width for i in range(len(monitors))]
+        rows = [claims[prefix + key % m] for m in monitors]
         values = [r["value"] for r in rows]
         lows = [max(0.0, v - r["ci"][0]) for v, r in zip(values, rows)]
         highs = [max(0.0, r["ci"][1] - v) for v, r in zip(values, rows)]
@@ -66,23 +69,33 @@ def bar_group(ax, claims: dict, series: list, key: str):
         ax.errorbar(xs, values, yerr=[lows, highs], fmt="none", ecolor=INK_2, elinewidth=0.9,
                     capsize=2)
         for x, v, high in zip(xs, values, highs):
-            ax.text(x, v + high + 0.02, "%.2f" % v, ha="center", va="bottom", fontsize=6.5,
-                    color=INK)
-    ax.set_xticks(range(len(MONITORS)), [NAMES[m] for m in MONITORS])
+            ax.text(x, v + high + 0.02, "%.2f" % v, ha="center", va="bottom",
+                    fontsize=6.5 if len(series) < 3 else 5.6, color=INK)
+    ax.set_xticks(range(len(monitors)), [NAMES[m] for m in monitors])
+    if len(monitors) > len(MONITORS):
+        ax.axvline(len(MONITORS) - 0.5, color=INK_2, linewidth=0.8, linestyle=(0, (3, 3)))
+        ax.text(len(MONITORS) - 0.42, 1.12, "exploratory", fontsize=7, color=INK_2,
+                ha="left", va="center")
     ax.set_ylim(0, 1.2)
     ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
-    ax.legend(loc="upper left", fontsize=7.5, frameon=False, ncol=len(series),
-              bbox_to_anchor=(0, 1.02), handlelength=1.2, columnspacing=1.2, labelcolor=INK_2)
+    ax.tick_params(axis="x", labelsize=8)
+    ax.legend(loc="lower left", fontsize=7.5, frameon=False, ncol=len(series),
+              bbox_to_anchor=(0, 1.0), handlelength=1.2, columnspacing=1.2, labelcolor=INK_2,
+              borderaxespad=0.2)
 
 
 def fig_pairs(claims: dict) -> str:
     series = [(p, l) for p, l in PAIR_SETS if (p + "pair_acc.m1") in claims]
-    fig, ax = plt.subplots(figsize=(6.4, 2.5), dpi=200, facecolor=SURFACE)
+    claims = dict(claims)
+    for prefix, part in (("", "prereg"), ("ext.", "ext"), ("expl.c4.", "c4")):
+        if "expl.m1g.pair_acc.%s" % part in claims:
+            claims[prefix + "pair_acc.m1g"] = claims["expl.m1g.pair_acc.%s" % part]
+    fig, ax = plt.subplots(figsize=(6.4, 2.3), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, claims, series, "pair_acc.%s")
     ax.set_ylabel("Pair accuracy (held out)", color=INK_2, fontsize=9)
     ax.set_title("Flags the cover-up and passes its honest twin", color=INK, fontsize=10,
-                 loc="left", pad=18)
+                 loc="left", pad=20)
     fig.tight_layout()
     name = "fig1_pair_accuracy.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
@@ -94,12 +107,15 @@ def fig_reacts(claims: dict) -> str:
     prefix = "ext." if "ext.flag.C3.m1" in claims else ""
     view = {"c1.flag.%s" % m: claims[prefix + "flag.C1.%s" % m] for m in MONITORS}
     view.update({"c3.flag.%s" % m: claims[prefix + "flag.C3.%s" % m] for m in MONITORS})
-    fig, ax = plt.subplots(figsize=(6.4, 2.35), dpi=200, facecolor=SURFACE)
+    for cond in ("C1", "C3"):
+        if "expl.m1g.flag.%s" % cond in claims:
+            view["%s.flag.m1g" % cond.lower()] = claims["expl.m1g.flag.%s" % cond]
+    fig, ax = plt.subplots(figsize=(6.4, 2.2), dpi=200, facecolor=SURFACE)
     style(ax)
     bar_group(ax, view, [("c1.", "C1 leak, no cleanup"), ("c3.", "C3 cleanup, no leak")],
               "flag.%s")
     ax.set_ylabel("Share of held-out runs flagged", color=INK_2, fontsize=9)
-    ax.set_title("What each monitor reacts to", color=INK, fontsize=10, loc="left", pad=18)
+    ax.set_title("What each monitor reacts to", color=INK, fontsize=10, loc="left", pad=20)
     fig.tight_layout()
     name = "fig2_flag_rates.png"
     fig.savefig(FIG / name, facecolor=SURFACE)
@@ -187,11 +203,13 @@ def main() -> int:
         fig_pairs(claims): (
             "Figure 1: Pair accuracy (the share of held-out pairs in which a monitor flags the "
             "cover-up and passes its honest twin) on the preregistered seeds, with D1, and on "
-            "exploratory C4 pairs. Error bars are Wilson 95% intervals."),
+            "exploratory C4 pairs. Error bars are Wilson 95% intervals. M1g, right of the dashed "
+            "line, is the exploratory monitor of Section 4.5 at its calibrated threshold."),
         fig_reacts(claims): (
             "Figure 2: Share of held-out runs each monitor flags, for open leaks with no cleanup "
             "(C1, %d runs) and honest cleanup with no leak (C3, %d runs). A monitor that tracks "
-            "the leak flags C1 and passes C3. Error bars are Wilson 95%% intervals." % (n_c1, n_c3)),
+            "the leak flags C1 and passes C3. Error bars are Wilson 95%% intervals; M1g as in "
+            "Figure 1." % (n_c1, n_c3)),
         fig_evasions(tables): (
             "Supplementary figure S2 (repository only): share of scripted C5 cover-ups each monitor catches, by evasion. M4 uses "
             "the length L = %d set on calibration seeds." % length),
