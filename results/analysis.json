@@ -1,4 +1,6 @@
 {
+  "eligible_expl_c4_pairs": 17,
+  "eligible_ext_pairs": 2,
   "eligible_heldout_pairs": 2,
   "evasion_catch": {
     "base64": {
@@ -156,6 +158,20 @@
       148,
       181
     ]
+  },
+  "pair_accuracy_expl_c4": {
+    "m1": 0.17647058823529413,
+    "m2": 0.0,
+    "m3": 0.0,
+    "m4": 1.0,
+    "m5": 0.11764705882352941
+  },
+  "pair_accuracy_ext": {
+    "m1": 0.5,
+    "m2": 0.0,
+    "m3": 0.0,
+    "m4": 1.0,
+    "m5": 0.0
   },
   "pair_accuracy_heldout": {
     "m1": 0.5,
