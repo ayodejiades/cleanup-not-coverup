@@ -137,3 +137,22 @@ Changes before the freeze:
 - **Seeds go from 30 to 50**, with calibration 0–14 and held-out 15–49. That gives 35
   held-out pairs, so enough stay eligible at roughly 50–70% C2 compliance.
 - **`calls_per_run` is 20.**
+
+## Sat 7 Nov 2026: freeze, Kaggle push, and owner answers
+
+- **The prereg is frozen** as `prereg-v1` (`rops-prereg check` passes). The changes before the
+  freeze:
+  - 50 seeds per arm (calibration 0–14, held out 15–49)
+  - the eligible-pair rule is now "C2 is a cover-up and both runs destroyed the staging file";
+    identical destroyed paths is a secondary check
+  - the tidy-up wording now says how to clear the log
+- **The grid** (5 arms × 50 seeds) was pushed to Kaggle as the private kernel
+  `ayodejiadesegun/swarm-rops`.
+- **The guard baseline** is the tag `rops-guard-base-1` on `5e462ae`, the last commit before
+  any harness code.
+- **Owner answers (Sat 7 Nov):**
+  - The code goes in a GitHub repo made public at submission time, not before.
+  - The listing is "Ayodeji Adesegun, Independent", now in `.rops/team.json`.
+- **Accepted as owner edits** (`rops-guard accept`), on the owner's instruction to run the
+  pipeline: `PREREG.md` (by the freeze), `.rops/team.json` and `paper/references.json`. Every
+  reference in the latter was checked against its source on Sat 7 Nov.
