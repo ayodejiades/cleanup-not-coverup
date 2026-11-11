@@ -283,3 +283,18 @@ Changes before the freeze:
       statement.
   - The sprint counts 8 pages without references and appendices. `rops-preflight` counts
     every PDF page, so the total is kept at 8.
+
+## Commit email rewrite (2026-11-11)
+
+- At the owner's request, the owner's personal email was replaced with the GitHub noreply
+  address in every commit's author and committer fields and in the `prereg-v1` tagger.
+  - Tool: `git filter-branch`. Dates, messages and file contents are unchanged.
+  - Every commit hash changed.
+- The preregistration commit was `5e29493dd7ae592fd05a7c889b46b8e8e92ab951`. It is now
+  `2d87c4ee47306ce2c717799322a8c789ae2be2a9`, still tagged `prereg-v1` with the original tag
+  date.
+  - `.rops/prereg.json` still records the old hash. It is protected and was not edited.
+  - `rops-prereg check` compares the PREREG.md hash and the run timestamps, and it passes.
+- `rops-guard accept` was run for `paper/LINKS.md`, which now holds the Google Doc and code
+  links. The guard passes.
+- A local backup of the repository before the rewrite exists outside the repository.
